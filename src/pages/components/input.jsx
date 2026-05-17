@@ -1,6 +1,3 @@
-import React from 'react'
-
-
 import { Input } from '@/ui/input'
 import { PageHeader } from '@/components/docs/page-header'
 import { Section } from '@/components/docs/section'
@@ -35,54 +32,54 @@ export function Example() {
 
 export default function Page() {
   return (
-    React.createElement('div', {}
-      , React.createElement(PageHeader, {
-        title: "INPUT",
-        description: "Single-line text field with optional label, prefix symbol, and inline error message. Green caret, amber error states."                }
-      )
+    <div>
+      <PageHeader
+        title="INPUT"
+        description="Single-line text field with optional label, prefix symbol, and inline error message. Green caret, amber error states."
+      />
 
-      , React.createElement(Section, { title: "PREVIEW"}
-        , React.createElement(ComponentPreview, {
-          code: previewCode,
-          preview: 
-            React.createElement('div', { style: { width: '100%', maxWidth: '360px', display: 'flex', flexDirection: 'column', gap: '1rem' }}
-              , React.createElement(Input, { label: "CALLSIGN", placeholder: "ENTER IDENTIFIER..." } )
-              , React.createElement(Input, { label: "COORDINATES", prefix: ">", placeholder: "00.0000, 00.0000" } )
-              , React.createElement(Input, { label: "ACCESS CODE" , error: "Invalid authorization token."  } )
-            )
+      <Section title="PREVIEW">
+        <ComponentPreview
+          code={previewCode}
+          preview={
+            <div style={{ width: '100%', maxWidth: '360px', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              <Input label="CALLSIGN" placeholder="ENTER IDENTIFIER..." />
+              <Input label="COORDINATES" prefix=">" placeholder="00.0000, 00.0000" />
+              <Input label="ACCESS CODE" error="Invalid authorization token." />
+            </div>
           }
-        )
-      )
+        />
+      </Section>
 
-      , React.createElement(Section, { title: "INSTALLATION"}
-        , React.createElement(CodeBlock, { code: installCode, language: "bash"} )
-      )
+      <Section title="INSTALLATION">
+        <CodeBlock code={installCode} language="bash" />
+      </Section>
 
-      , React.createElement(Section, { title: "USAGE"}
-        , React.createElement(CodeBlock, { code: usageCode} )
-      )
+      <Section title="USAGE">
+        <CodeBlock code={usageCode} />
+      </Section>
 
-      , React.createElement(Section, { title: "STATES"}
-        , React.createElement('div', { style: { display: 'flex', flexDirection: 'column', gap: '1.25rem' }}
-          , [
+      <Section title="STATES">
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+          {[
             { label: 'DEFAULT',  props: { label: 'SECTOR', placeholder: 'ALPHA-7...' } },
             { label: 'PREFIX',   props: { label: 'COMMAND', prefix: '$', placeholder: 'init sequence' } },
             { label: 'ERROR',    props: { label: 'AUTH TOKEN', defaultValue: 'invalid-xyz', error: 'Authorization failed.' } },
             { label: 'DISABLED', props: { label: 'SYSTEM ID', defaultValue: 'SYS-0042', disabled: true } },
           ].map((state) => (
-            React.createElement('div', { key: state.label, style: { display: 'flex', flexDirection: 'column', gap: '0.4rem' }}
-              , React.createElement(Input, { ...state.props} )
-              , React.createElement('span', { style: { fontSize: '0.65rem', color: 'var(--text-muted)', letterSpacing: '0.08em' }}
-                , state.label
-              )
-            )
-          ))
-        )
-      )
+            <div key={state.label} style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+              <Input {...state.props} />
+              <span style={{ fontSize: '0.65rem', color: 'var(--text-muted)', letterSpacing: '0.08em' }}>
+                {state.label}
+              </span>
+            </div>
+          ))}
+        </div>
+      </Section>
 
-      , React.createElement(Section, { title: "PROPS"}
-        , React.createElement(PropsTable, {
-          rows: [
+      <Section title="PROPS">
+        <PropsTable
+          rows={[
             { prop: 'label',       type: 'string',  defaultValue: '—',     description: 'Label text displayed above the input. Auto-generates the id/htmlFor binding.' },
             { prop: 'error',       type: 'string',  defaultValue: '—',     description: 'Inline error message shown below. Turns border and label amber.' },
             { prop: 'prefix',      type: 'string',  defaultValue: '—',     description: 'Symbol rendered inside the left edge of the input.' },
@@ -90,8 +87,8 @@ export default function Page() {
             { prop: 'placeholder', type: 'string',  defaultValue: '—',     description: 'Placeholder text (inherits --text-muted color).' },
             { prop: 'id',          type: 'string',  defaultValue: '—',     description: 'Override the auto-generated id.' },
           ]}
-        )
-      )
-    )
+        />
+      </Section>
+    </div>
   )
 }

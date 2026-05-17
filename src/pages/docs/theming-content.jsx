@@ -1,4 +1,3 @@
-import React from 'react'
 
 import { PageHeader } from '@/components/docs/page-header'
 import { Section } from '@/components/docs/section'
@@ -56,75 +55,92 @@ const palette = [
 export default function ThemingContent() {
   const narrow = useNarrow()
   return (
-    React.createElement('div', {}
-      , React.createElement(PageHeader, {
-        title: "THEMING",
-        description: "The CSS variable token system — how it works and how to customize it."             }
-      )
-      , React.createElement(Section, { title: "HOW IT WORKS"  }
-        , React.createElement('p', { style: { fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: 1.8, marginBottom: '1rem' }}, "All design decisions are expressed as CSS custom properties in"
-                   , ' '
-          , React.createElement('span', { style: { color: 'var(--color-green)' }}, "src/styles/globals.css"), ". There are two layers:"
-        )
-        , React.createElement('div', { style: { display: 'flex', flexDirection: 'column', gap: '0.5rem' }}
-          , [
-            ['@theme {}',  'Tailwind v4 block — tokens that generate utility classes like text-teal, bg-void.'],
-            [':root {}',   'Semantic tokens — contextual roles like --background, --text-primary, --glow-teal.'],
-          ].map(([token, desc]) => (
-            React.createElement('div', { key: token, style: { display: 'flex', gap: '1rem', padding: '0.6rem', border: '1px solid var(--border)', background: 'var(--surface)' }}
-              , React.createElement('code', { style: { color: 'var(--color-green)', fontSize: '0.75rem', minWidth: '90px', flexShrink: 0 }}, token)
-              , React.createElement('span', { style: { fontSize: '0.8rem', color: 'var(--text-muted)', lineHeight: 1.5 }}, desc)
-            )
-          ))
-        )
-      )
-      , React.createElement(Section, { title: "COLOR PALETTE" }
-        , React.createElement('div', { style: { display: 'flex', flexDirection: 'column', gap: '2px' }}
-          , palette.map((c) => (
-            React.createElement('div', {
-              key: c.name,
-              style: {
-                display:       'flex',
-                flexDirection: narrow ? 'column' : 'row',
-                alignItems:    narrow ? 'flex-start' : 'center',
-                gap:           '0.75rem',
-                padding:       '0.4rem 0.6rem',
-                background:    'var(--surface)',
-                border:        '1px solid var(--border)',
-              }}
-              , React.createElement('div', { style: { display: 'flex', alignItems: 'center', gap: '0.75rem' }}
-                , React.createElement('div', {
-                  style: {
-                    width:      '28px',
-                    height:     '28px',
-                    background: c.value,
-                    border:     '1px solid var(--border)',
-                    flexShrink: 0,
-                  }}
-                )
-                , React.createElement('code', { style: { fontSize: '0.7rem', color: 'var(--color-green)', ...(narrow ? {} : { minWidth: '200px', flexShrink: 0 }) }}
-                  , c.name
-                )
-                , React.createElement('code', { style: { fontSize: '0.7rem', color: 'var(--color-amber)', ...(narrow ? {} : { minWidth: '80px', flexShrink: 0 }) }}
-                  , c.value
-                )
-              )
-              , React.createElement('span', { style: { fontSize: '0.75rem', color: 'var(--text-muted)' }}, c.role)
-            )
-          ))
-        )
-      )
-      , React.createElement(Section, { title: "CUSTOMIZING"}
-        , React.createElement('p', { style: { fontSize: '0.8rem', color: 'var(--text-muted)', lineHeight: 1.7, marginBottom: '1rem' }}, "Override any CSS variable after importing globals.css. Components automatically pick up your changes."
-        )
-        , React.createElement(CodeBlock, { code: overrideExample, language: "css"} )
-      )
-      , React.createElement(Section, { title: "GLOW EFFECTS" }
-        , React.createElement(CodeBlock, { code: glowExample, language: "css"} )
-      )
-      , React.createElement(Section, { title: "CORNER NOTCHES" }
-        , React.createElement(CodeBlock, { code: clipExample, language: "css"} )
-      )
-    )
-  )
+    <div>
+      <PageHeader
+        title="THEMING"
+        description="The CSS variable token system — how it works and how to customize it." />
+      <Section title="HOW IT WORKS">
+        <p
+          style={{ fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: 1.8, marginBottom: '1rem' }}>
+          All design decisions are expressed as CSS custom properties in
+          {' '}
+          <span style={{ color: 'var(--color-green)' }}>
+            src/styles/globals.css
+          </span>
+          . There are two layers:
+        </p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+          {[
+                  ['@theme {}',  'Tailwind v4 block — tokens that generate utility classes like text-teal, bg-void.'],
+                  [':root {}',   'Semantic tokens — contextual roles like --background, --text-primary, --glow-teal.'],
+                ].map(([token, desc]) => (
+                  <div
+                    key={token}
+                    style={{ display: 'flex', gap: '1rem', padding: '0.6rem', border: '1px solid var(--border)', background: 'var(--surface)' }}>
+                    <code
+                      style={{ color: 'var(--color-green)', fontSize: '0.75rem', minWidth: '90px', flexShrink: 0 }}>
+                      {token}
+                    </code>
+                    <span
+                      style={{ fontSize: '0.8rem', color: 'var(--text-muted)', lineHeight: 1.5 }}>
+                      {desc}
+                    </span>
+                  </div>
+                ))}
+        </div>
+      </Section>
+      <Section title="COLOR PALETTE">
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+          {palette.map((c) => (
+                  <div
+                    key={c.name}
+                    style={{
+                      display:       'flex',
+                      flexDirection: narrow ? 'column' : 'row',
+                      alignItems:    narrow ? 'flex-start' : 'center',
+                      gap:           '0.75rem',
+                      padding:       '0.4rem 0.6rem',
+                      background:    'var(--surface)',
+                      border:        '1px solid var(--border)',
+                    }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                      <div
+                        style={{
+                          width:      '28px',
+                          height:     '28px',
+                          background: c.value,
+                          border:     '1px solid var(--border)',
+                          flexShrink: 0,
+                        }} />
+                      <code
+                        style={{ fontSize: '0.7rem', color: 'var(--color-green)', ...(narrow ? {} : { minWidth: '200px', flexShrink: 0 }) }}>
+                        {c.name}
+                      </code>
+                      <code
+                        style={{ fontSize: '0.7rem', color: 'var(--color-amber)', ...(narrow ? {} : { minWidth: '80px', flexShrink: 0 }) }}>
+                        {c.value}
+                      </code>
+                    </div>
+                    <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
+                      {c.role}
+                    </span>
+                  </div>
+                ))}
+        </div>
+      </Section>
+      <Section title="CUSTOMIZING">
+        <p
+          style={{ fontSize: '0.8rem', color: 'var(--text-muted)', lineHeight: 1.7, marginBottom: '1rem' }}>
+          Override any CSS variable after importing globals.css. Components automatically pick up your changes.
+        </p>
+        <CodeBlock code={overrideExample} language="css" />
+      </Section>
+      <Section title="GLOW EFFECTS">
+        <CodeBlock code={glowExample} language="css" />
+      </Section>
+      <Section title="CORNER NOTCHES">
+        <CodeBlock code={clipExample} language="css" />
+      </Section>
+    </div>
+  );
 }

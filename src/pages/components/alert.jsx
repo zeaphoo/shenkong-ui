@@ -1,6 +1,3 @@
-import React from 'react'
-
-
 import { Alert, AlertTitle, AlertDescription } from '@/ui/alert'
 import { PageHeader } from '@/components/docs/page-header'
 import { Section } from '@/components/docs/section'
@@ -37,66 +34,70 @@ export function Example() {
 
 export default function Page() {
   return (
-    React.createElement('div', {}
-      , React.createElement(PageHeader, {
-        title: "ALERT",
-        description: "Full-width contextual message with left accent border. Four semantic variants for status, warning, critical, and info states."                }
-      )
-
-      , React.createElement(Section, { title: "PREVIEW"}
-        , React.createElement(ComponentPreview, {
-          code: previewCode,
-          preview: 
-            React.createElement('div', { style: { width: '100%', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}
-              , React.createElement(Alert, { variant: "STATUS"}
-                , React.createElement(AlertTitle, {}, "SYSTEM STATUS" )
-                , React.createElement(AlertDescription, {}, "All subsystems operating within normal parameters."     )
-              )
-            )
-          }
-        )
-      )
-
-      , React.createElement(Section, { title: "INSTALLATION"}
-        , React.createElement(CodeBlock, { code: installCode, language: "bash"} )
-      )
-
-      , React.createElement(Section, { title: "USAGE"}
-        , React.createElement(CodeBlock, { code: usageCode} )
-      )
-
-      , React.createElement(Section, { title: "VARIANTS"}
-        , React.createElement('div', { style: { display: 'flex', flexDirection: 'column', gap: '1rem' }}
-          , (['STATUS', 'WARNING', 'CRITICAL', 'INFO'] ).map((v) => (
-            React.createElement('div', { key: v, style: { display: 'flex', flexDirection: 'column', gap: '0.4rem' }}
-              , React.createElement(Alert, { variant: v}
-                , React.createElement(AlertTitle, {}, v)
-                , React.createElement(AlertDescription, {}
-                  , v === 'STATUS'   && 'All systems nominal. Ready for operation.'
-                  , v === 'WARNING'  && 'Elevated power consumption detected. Monitor closely.'
-                  , v === 'CRITICAL' && 'Hull breach imminent. Evacuate affected sector immediately.'
-                  , v === 'INFO'     && 'Scheduled maintenance cycle begins in 48 hours.'
-                )
-              )
-              , React.createElement('span', { style: { fontSize: '0.65rem', color: 'var(--text-muted)', letterSpacing: '0.08em' }}, "variant=\""
-                , v, "\""
-              )
-            )
-          ))
-        )
-      )
-
-      , React.createElement(Section, { title: "PROPS"}
-        , React.createElement(PropsTable, {
-          rows: [
+    <div>
+      <PageHeader
+        title="ALERT"
+        description="Full-width contextual message with left accent border. Four semantic variants for status, warning, critical, and info states." />
+      <Section title="PREVIEW">
+        <ComponentPreview
+          code={previewCode}
+          preview={
+            <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+              <Alert variant="STATUS">
+                <AlertTitle>SYSTEM STATUS</AlertTitle>
+                <AlertDescription>All subsystems operating within normal parameters.</AlertDescription>
+              </Alert>
+            </div>
+          } />
+      </Section>
+      <Section title="INSTALLATION">
+        <CodeBlock code={installCode} language="bash" />
+      </Section>
+      <Section title="USAGE">
+        <CodeBlock code={usageCode} />
+      </Section>
+      <Section title="VARIANTS">
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+          {(['STATUS', 'WARNING', 'CRITICAL', 'INFO'] ).map((v) => (
+                  <div
+                    key={v}
+                    style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+                    <Alert variant={v}>
+                      <AlertTitle>
+                        {v}
+                      </AlertTitle>
+                      <AlertDescription>
+                        {v === 'STATUS'   && 'All systems nominal. Ready for operation.'}
+                        {v === 'WARNING'  && 'Elevated power consumption detected. Monitor closely.'}
+                        {v === 'CRITICAL' && 'Hull breach imminent. Evacuate affected sector immediately.'}
+                        {v === 'INFO'     && 'Scheduled maintenance cycle begins in 48 hours.'}
+                      </AlertDescription>
+                    </Alert>
+                    <span
+                      style={{ fontSize: '0.65rem', color: 'var(--text-muted)', letterSpacing: '0.08em' }}>
+                      variant="
+                      {v}
+                      "
+                    </span>
+                  </div>
+                ))}
+        </div>
+      </Section>
+      <Section title="PROPS">
+        <PropsTable
+          rows={[
             { prop: 'variant',   type: 'STATUS | WARNING | CRITICAL | INFO', defaultValue: 'STATUS', description: 'Controls left border color, glow, and prefix symbol.' },
             { prop: 'className', type: 'string',                              defaultValue: '—',      description: 'Additional classes merged via cn().' },
-          ]}
-        )
-        , React.createElement('p', { style: { marginTop: '1rem', fontSize: '0.75rem', color: 'var(--text-muted)', lineHeight: 1.6 }}, "AlertTitle and AlertDescription extend "
-              , React.createElement('code', {}, "React.HTMLAttributes<HTMLDivElement>"), "."
-        )
-      )
-    )
-  )
+          ]} />
+        <p
+          style={{ marginTop: '1rem', fontSize: '0.75rem', color: 'var(--text-muted)', lineHeight: 1.6 }}>
+          {"AlertTitle and AlertDescription extend "}
+          <code>
+            React.HTMLAttributes&lt;HTMLDivElement&gt;
+          </code>
+          .
+        </p>
+      </Section>
+    </div>
+  );
 }

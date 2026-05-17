@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { BarChart } from '@/ui/bar-chart'
 import { PageHeader } from '@/components/docs/page-header'
 import { Section } from '@/components/docs/section'
@@ -45,63 +43,72 @@ const data: BarChartEntry[] = [
 export function BarChartContent() {
   const narrow = useNarrow()
   return (
-    React.createElement('div', {}
-      , React.createElement(PageHeader, {
-        title: "BAR CHART" ,
-        description: "CSS-only bar chart. No charting library dependency. Supports horizontal and vertical orientations with four color variants."               }
-      )
-      , React.createElement(Section, { title: "PREVIEW"}
-        , React.createElement(ComponentPreview, {
-          code: previewCode,
-          preview: 
-            React.createElement(BarChart, {
-              data: horizontalData,
-              title: "SYSTEM LOAD" ,
-              orientation: "horizontal",
-              style: { width: '100%' }}
-            )
-          }
-        )
-      )
-      , React.createElement(Section, { title: "INSTALLATION"}
-        , React.createElement(CodeBlock, { code: installCode, language: "bash"} )
-      )
-      , React.createElement(Section, { title: "USAGE"}
-        , React.createElement(CodeBlock, { code: usageCode} )
-      )
-      , React.createElement(Section, { title: "ORIENTATIONS"}
-        , React.createElement('div', { style: { display: 'grid', gridTemplateColumns: narrow ? '1fr' : '1fr 1fr', gap: '1.5rem' }}
-          , React.createElement('div', {}
-            , React.createElement('p', { style: { marginBottom: '0.5rem', fontSize: '0.65rem', color: 'var(--text-muted)', letterSpacing: '0.1em' }}, "orientation=\"horizontal\""
-            )
-            , React.createElement(BarChart, { data: horizontalData, title: "SYSTEM LOAD" , orientation: "horizontal", style: { width: '100%' }} )
-          )
-          , React.createElement('div', {}
-            , React.createElement('p', { style: { marginBottom: '0.5rem', fontSize: '0.65rem', color: 'var(--text-muted)', letterSpacing: '0.1em' }}, "orientation=\"vertical\""
-            )
-            , React.createElement(BarChart, { data: verticalData, title: "WEEKLY UPTIME" , orientation: "vertical", style: { width: '100%' }} )
-          )
-        )
-      )
-      , React.createElement(Section, { title: "VARIANTS"}
-        , React.createElement('div', { style: { display: 'flex', flexDirection: 'column', gap: '1rem' }}
-          , (['ACTIVE', 'WARNING', 'CRITICAL', 'DEFAULT'] ).map((v) => (
-            React.createElement('div', { key: v}
-              , React.createElement('p', { style: { marginBottom: '0.35rem', fontSize: '0.6rem', color: 'var(--text-muted)', letterSpacing: '0.1em' }}, "variant=\""
-                , v, "\""
-              )
-              , React.createElement(BarChart, {
-                data: horizontalData.slice(0, 3),
-                variant: v,
-                style: { width: '100%' }}
-              )
-            )
-          ))
-        )
-      )
-      , React.createElement(Section, { title: "PROPS"}
-        , React.createElement(PropsTable, {
-          rows: [
+    <div>
+      <PageHeader
+        title="BAR CHART"
+        description="CSS-only bar chart. No charting library dependency. Supports horizontal and vertical orientations with four color variants." />
+      <Section title="PREVIEW">
+        <ComponentPreview
+          code={previewCode}
+          preview={
+            <BarChart
+              data={horizontalData}
+              title="SYSTEM LOAD"
+              orientation="horizontal"
+              style={{ width: '100%' }} />
+          } />
+      </Section>
+      <Section title="INSTALLATION">
+        <CodeBlock code={installCode} language="bash" />
+      </Section>
+      <Section title="USAGE">
+        <CodeBlock code={usageCode} />
+      </Section>
+      <Section title="ORIENTATIONS">
+        <div
+          style={{ display: 'grid', gridTemplateColumns: narrow ? '1fr' : '1fr 1fr', gap: '1.5rem' }}>
+          <div>
+            <p
+              style={{ marginBottom: '0.5rem', fontSize: '0.65rem', color: 'var(--text-muted)', letterSpacing: '0.1em' }}>
+              orientation="horizontal"
+            </p>
+            <BarChart
+              data={horizontalData}
+              title="SYSTEM LOAD"
+              orientation="horizontal"
+              style={{ width: '100%' }} />
+          </div>
+          <div>
+            <p
+              style={{ marginBottom: '0.5rem', fontSize: '0.65rem', color: 'var(--text-muted)', letterSpacing: '0.1em' }}>
+              orientation="vertical"
+            </p>
+            <BarChart
+              data={verticalData}
+              title="WEEKLY UPTIME"
+              orientation="vertical"
+              style={{ width: '100%' }} />
+          </div>
+        </div>
+      </Section>
+      <Section title="VARIANTS">
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+          {(['ACTIVE', 'WARNING', 'CRITICAL', 'DEFAULT'] ).map((v) => (
+                  <div key={v}>
+                    <p
+                      style={{ marginBottom: '0.35rem', fontSize: '0.6rem', color: 'var(--text-muted)', letterSpacing: '0.1em' }}>
+                      variant="
+                      {v}
+                      "
+                    </p>
+                    <BarChart data={horizontalData.slice(0, 3)} variant={v} style={{ width: '100%' }} />
+                  </div>
+                ))}
+        </div>
+      </Section>
+      <Section title="PROPS">
+        <PropsTable
+          rows={[
             { prop: 'data',        type: 'BarChartEntry[]',                       defaultValue: '—',            description: 'Array of { label, value } entries.' },
             { prop: 'orientation', type: '"horizontal" | "vertical"',             defaultValue: '"horizontal"', description: 'Bar direction.' },
             { prop: 'variant',     type: 'DEFAULT | ACTIVE | WARNING | CRITICAL', defaultValue: 'ACTIVE',       description: 'Controls bar color and glow.' },
@@ -109,9 +116,8 @@ export function BarChartContent() {
             { prop: 'showValues',  type: 'boolean',                               defaultValue: 'true',         description: 'Show value labels beside/above each bar.' },
             { prop: 'max',         type: 'number',                                defaultValue: 'max(data)',    description: 'Override the scale maximum.' },
             { prop: 'className',   type: 'string',                                defaultValue: '—',            description: 'Additional classes merged via cn().' },
-          ]}
-        )
-      )
-    )
-  )
+          ]} />
+      </Section>
+    </div>
+  );
 }

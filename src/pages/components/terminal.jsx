@@ -1,6 +1,3 @@
-import React from 'react'
-
-
 import { Terminal, } from '@/ui/terminal'
 import { PageHeader } from '@/components/docs/page-header'
 import { Section } from '@/components/docs/section'
@@ -39,13 +36,14 @@ const lines: TerminalLine[] = [
 <Terminal lines={lines} title="MISSION LOG" height="14rem" />`
 
 const installCode = `npx shadcn@latest add @shenkong/terminal`
-const usageCode = `import { Terminal, type TerminalLine } from '@/ui/terminal'
+const usageCode = `import { Terminal } from '@/ui/terminal'
+import { useState } from 'react'
 
-const [log, setLog] = React.useState<TerminalLine[]>([
+const [log, setLog] = useState([
   { type: 'system', text: 'System ready.' },
 ])
 
-function sendCommand(cmd: string) {
+function sendCommand(cmd) {
   setLog(prev => [
     ...prev,
     { type: 'input',  text: cmd,               timestamp: now() },
@@ -57,67 +55,54 @@ function sendCommand(cmd: string) {
 
 export default function Page() {
   return (
-    React.createElement('div', {}
-      , React.createElement(PageHeader, {
-        title: "TERMINAL",
-        description: "Scrollable log and output block. Supports five line types with distinct colors, optional timestamps, and a blinking cursor."                 }
-      )
-
-      , React.createElement(Section, { title: "PREVIEW"}
-        , React.createElement(ComponentPreview, {
-          code: previewCode,
-          preview:
-            React.createElement(Terminal, { lines: demoLines, title: "MISSION LOG" , height: "14rem", style: { width: '100%' }} )
-          }
-        )
-      )
-
-      , React.createElement(Section, { title: "INSTALLATION"}
-        , React.createElement(CodeBlock, { code: installCode, language: "bash"} )
-      )
-
-      , React.createElement(Section, { title: "USAGE"}
-        , React.createElement(CodeBlock, { code: usageCode} )
-      )
-
-      , React.createElement(Section, { title: "LINE TYPES" }
-        , React.createElement(Terminal, {
-          lines: [
+    <div>
+      <PageHeader
+        title="TERMINAL"
+        description="Scrollable log and output block. Supports five line types with distinct colors, optional timestamps, and a blinking cursor." />
+      <Section title="PREVIEW">
+        <ComponentPreview
+          code={previewCode}
+          preview={<Terminal lines={demoLines} title="MISSION LOG" height="14rem" style={{ width: '100%' }} />} />
+      </Section>
+      <Section title="INSTALLATION">
+        <CodeBlock code={installCode} language="bash" />
+      </Section>
+      <Section title="USAGE">
+        <CodeBlock code={usageCode} />
+      </Section>
+      <Section title="LINE TYPES">
+        <Terminal
+          lines={[
             { type: 'system', text: 'System message — boot info, section headers.' },
             { type: 'input',  text: 'User input — commands typed at the prompt.' },
             { type: 'output', text: 'Standard output — normal response text.' },
             { type: 'warn',   text: 'Warning — degraded state, non-fatal.' },
             { type: 'error',  text: 'Error — failure, timeout, or critical fault.' },
-          ],
-          title: "LINE TYPE REFERENCE"  ,
-          height: "auto",
-          blinkCursor: false,
-          style: { width: '100%' }}
-        )
-      )
-
-      , React.createElement(Section, { title: "PROPS"}
-        , React.createElement(PropsTable, {
-          rows: [
+          ]}
+          title="LINE TYPE REFERENCE"
+          height="auto"
+          blinkCursor={false}
+          style={{ width: '100%' }} />
+      </Section>
+      <Section title="PROPS">
+        <PropsTable
+          rows={[
             { prop: 'lines',       type: 'TerminalLine[]', defaultValue: '[]',        description: 'Array of log entries. Each has type, text, and optional timestamp.' },
             { prop: 'title',       type: 'string',         defaultValue: '"TERMINAL"', description: 'Label shown in the title bar.' },
             { prop: 'prompt',      type: 'string',         defaultValue: '">"',        description: 'Prompt symbol shown beside the blinking cursor.' },
             { prop: 'height',      type: 'string | number', defaultValue: '"16rem"',   description: 'Height of the scrollable output area.' },
             { prop: 'blinkCursor', type: 'boolean',        defaultValue: 'true',       description: 'Show the blinking block cursor at the end of the log.' },
             { prop: 'className',   type: 'string',         defaultValue: '—',          description: 'Additional classes merged via cn().' },
-          ]}
-        )
-      )
-
-      , React.createElement(Section, { title: "TERMINALLINE FIELDS" }
-        , React.createElement(PropsTable, {
-          rows: [
+          ]} />
+      </Section>
+      <Section title="TERMINALLINE FIELDS">
+        <PropsTable
+          rows={[
             { prop: 'text',      type: 'string',                               defaultValue: '—',       description: 'The line content.' },
             { prop: 'type',      type: 'input | output | warn | error | system', defaultValue: '"output"', description: 'Controls prefix symbol and text color.' },
             { prop: 'timestamp', type: 'string',                               defaultValue: 'undefined', description: 'Optional timestamp shown in muted color at the start.' },
-          ]}
-        )
-      )
-    )
-  )
+          ]} />
+      </Section>
+    </div>
+  );
 }

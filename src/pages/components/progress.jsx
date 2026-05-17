@@ -1,6 +1,3 @@
-import React from 'react'
-
-
 import { Progress } from '@/ui/progress'
 import { PageHeader } from '@/components/docs/page-header'
 import { Section } from '@/components/docs/section'
@@ -34,51 +31,44 @@ export function StatusReadout() {
 
 export default function Page() {
   return (
-    React.createElement('div', {}
-      , React.createElement(PageHeader, {
-        title: "PROGRESS",
-        description: "ASCII bracket progress bar. Fills with = characters across a 20-char width. Optional label and percentage readout."                ,
-        dependencies: ['@radix-ui/react-progress']}
-      )
-
-      , React.createElement(Section, { title: "PREVIEW"}
-        , React.createElement(ComponentPreview, {
-          code: previewCode,
-          preview: 
-            React.createElement('div', { style: { width: '100%', maxWidth: '280px', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}
-              , React.createElement(Progress, { value: 67, label: "POWER CORE" } )
-              , React.createElement(Progress, { value: 30, label: "FUEL CELLS" } )
-              , React.createElement(Progress, { value: 95, label: "SHIELD MATRIX" } )
-            )
-          }
-        )
-      )
-
-      , React.createElement(Section, { title: "INSTALLATION"}
-        , React.createElement(CodeBlock, { code: installCode, language: "bash"} )
-      )
-
-      , React.createElement(Section, { title: "USAGE"}
-        , React.createElement(CodeBlock, { code: usageCode} )
-      )
-
-      , React.createElement(Section, { title: "VALUES"}
-        , React.createElement('div', { style: { display: 'flex', flexDirection: 'column', gap: '0.75rem', maxWidth: '300px' }}
-          , [0, 25, 50, 75, 100].map((v) => (
-            React.createElement(Progress, { key: v, value: v, label: `VALUE: ${v}`} )
-          ))
-        )
-      )
-
-      , React.createElement(Section, { title: "PROPS"}
-        , React.createElement(PropsTable, {
-          rows: [
+    <div>
+      <PageHeader
+        title="PROGRESS"
+        description="ASCII bracket progress bar. Fills with = characters across a 20-char width. Optional label and percentage readout."
+        dependencies={['@radix-ui/react-progress']} />
+      <Section title="PREVIEW">
+        <ComponentPreview
+          code={previewCode}
+          preview={
+            <div style={{ width: '100%', maxWidth: '280px', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+              <Progress value={67} label="POWER CORE" />
+              <Progress value={30} label="FUEL CELLS" />
+              <Progress value={95} label="SHIELD MATRIX" />
+            </div>
+          } />
+      </Section>
+      <Section title="INSTALLATION">
+        <CodeBlock code={installCode} language="bash" />
+      </Section>
+      <Section title="USAGE">
+        <CodeBlock code={usageCode} />
+      </Section>
+      <Section title="VALUES">
+        <div
+          style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', maxWidth: '300px' }}>
+          {[0, 25, 50, 75, 100].map((v) => (
+                  <Progress key={v} value={v} label={`VALUE: ${v}`} />
+                ))}
+        </div>
+      </Section>
+      <Section title="PROPS">
+        <PropsTable
+          rows={[
             { prop: 'value',     type: 'number',  defaultValue: '0',    description: 'Progress value from 0 to 100. Clamped to range.' },
             { prop: 'label',     type: 'string',  defaultValue: '—',    description: 'Optional label shown above the bar in uppercase muted text.' },
             { prop: 'showValue', type: 'boolean', defaultValue: 'true', description: 'Show the percentage number after the closing bracket.' },
-          ]}
-        )
-      )
-    )
-  )
+          ]} />
+      </Section>
+    </div>
+  );
 }

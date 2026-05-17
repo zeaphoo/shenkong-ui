@@ -1,4 +1,3 @@
-import React from 'react'
 
 
 
@@ -20,26 +19,29 @@ export function ToastDemo() {
   ]
 
   return (
-    React.createElement(ToastProvider, {__self: this, __source: {fileName: _jsxFileName, lineNumber: 21}}
-      , React.createElement('div', { style: { display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}
-        , variants.map(({ v, label, title, desc }) => (
-          React.createElement(Button, {
-            key: v,
-            variant: "OUTLINE",
-            size: "SM",
-            onClick: () => toast({ title, description: desc, variant: v })}
-
-            , label
-          )
-        ))
-      )
-      , toasts.map((t) => (
-        React.createElement(Toast, { key: t.id, variant: t.variant}
-          , React.createElement(ToastTitle, {__self: this, __source: {fileName: _jsxFileName, lineNumber: 36}}, t.title)
-          , t.description && React.createElement(ToastDescription, {__self: this, __source: {fileName: _jsxFileName, lineNumber: 37}}, t.description)
-        )
-      ))
-      , React.createElement(ToastViewport, {__self: this, __source: {fileName: _jsxFileName, lineNumber: 40}} )
-    )
-  )
+    <ToastProvider>
+      <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+        {variants.map(({ v, label, title, desc }) => (
+              <Button
+                key={v}
+                variant="OUTLINE"
+                size="SM"
+                onClick={() => toast({ title, description: desc, variant: v })}>
+                {label}
+              </Button>
+            ))}
+      </div>
+      {toasts.map((t) => (
+          <Toast key={t.id} variant={t.variant}>
+            <ToastTitle>
+              {t.title}
+            </ToastTitle>
+            {t.description && <ToastDescription>
+              {t.description}
+            </ToastDescription>}
+          </Toast>
+        ))}
+      <ToastViewport />
+    </ToastProvider>
+  );
 }

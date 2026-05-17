@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { NodeGraph } from '@/ui/node-graph'
 import { PageHeader } from '@/components/docs/page-header'
 import { Section } from '@/components/docs/section'
@@ -66,82 +64,80 @@ const edges: NodeGraphEdge[] = [
 export function NodeGraphContent() {
   const narrow = useNarrow()
   return (
-    React.createElement('div', {}
-      , React.createElement(PageHeader, {
-        title: "NODE GRAPH" ,
-        description: "SVG node-edge graph for visualizing networks, pipelines, and system topologies. Supports directed arrowheads, animated marching-ants edges, per-node status colors, and hover highlights."                     }
-      )
-      , React.createElement(Section, { title: "PREVIEW"}
-        , React.createElement(ComponentPreview, {
-          code: previewCode,
-          preview: 
-            React.createElement(NodeGraph, {
-              nodes: networkNodes,
-              edges: networkEdges,
-              title: "SHIP SUBSYSTEM NETWORK"  ,
-              style: { width: '100%' }}
-            )
-          }
-        )
-      )
-      , React.createElement(Section, { title: "INSTALLATION"}
-        , React.createElement(CodeBlock, { code: installCode, language: "bash"} )
-      )
-      , React.createElement(Section, { title: "USAGE"}
-        , React.createElement(CodeBlock, { code: usageCode} )
-      )
-      , React.createElement(Section, { title: "DIRECTED + ANIMATED"  }
-        , React.createElement(NodeGraph, {
-          nodes: pipelineNodes,
-          edges: pipelineEdges,
-          directed: true,
-          title: "DATA PIPELINE // DIRECTED + ANIMATED EDGES"      ,
-          style: { width: '100%' }}
-        )
-      )
-      , React.createElement(Section, { title: "VARIANTS"}
-        , React.createElement('div', { style: { display: 'grid', gridTemplateColumns: narrow ? '1fr' : '1fr 1fr', gap: '1rem' }}
-          , (['ACTIVE', 'WARNING', 'CRITICAL', 'DEFAULT'] ).map((v) => (
-            React.createElement('div', { key: v}
-              , React.createElement('p', { style: { marginBottom: '0.35rem', fontSize: '0.6rem', color: 'var(--text-muted)', letterSpacing: '0.1em' }}, "variant=\""
-                , v, "\""
-              )
-              , React.createElement(NodeGraph, {
-                nodes: [
-                  { id: 'a', label: 'ALPHA', x: 20, y: 50 },
-                  { id: 'b', label: 'BETA',  x: 80, y: 50 },
-                ],
-                edges: [{ from: 'a', to: 'b' }],
-                variant: v,
-                directed: true,
-                height: 120,
-                style: { width: '100%' }}
-              )
-            )
-          ))
-        )
-      )
-      , React.createElement(Section, { title: "NODE STATUS COLORS"  }
-        , React.createElement(NodeGraph, {
-          nodes: [
+    <div>
+      <PageHeader
+        title="NODE GRAPH"
+        description="SVG node-edge graph for visualizing networks, pipelines, and system topologies. Supports directed arrowheads, animated marching-ants edges, per-node status colors, and hover highlights." />
+      <Section title="PREVIEW">
+        <ComponentPreview
+          code={previewCode}
+          preview={
+            <NodeGraph
+              nodes={networkNodes}
+              edges={networkEdges}
+              title="SHIP SUBSYSTEM NETWORK"
+              style={{ width: '100%' }} />
+          } />
+      </Section>
+      <Section title="INSTALLATION">
+        <CodeBlock code={installCode} language="bash" />
+      </Section>
+      <Section title="USAGE">
+        <CodeBlock code={usageCode} />
+      </Section>
+      <Section title="DIRECTED + ANIMATED">
+        <NodeGraph
+          nodes={pipelineNodes}
+          edges={pipelineEdges}
+          directed={true}
+          title="DATA PIPELINE // DIRECTED + ANIMATED EDGES"
+          style={{ width: '100%' }} />
+      </Section>
+      <Section title="VARIANTS">
+        <div
+          style={{ display: 'grid', gridTemplateColumns: narrow ? '1fr' : '1fr 1fr', gap: '1rem' }}>
+          {(['ACTIVE', 'WARNING', 'CRITICAL', 'DEFAULT'] ).map((v) => (
+                  <div key={v}>
+                    <p
+                      style={{ marginBottom: '0.35rem', fontSize: '0.6rem', color: 'var(--text-muted)', letterSpacing: '0.1em' }}>
+                      variant="
+                      {v}
+                      "
+                    </p>
+                    <NodeGraph
+                      nodes={[
+                        { id: 'a', label: 'ALPHA', x: 20, y: 50 },
+                        { id: 'b', label: 'BETA',  x: 80, y: 50 },
+                      ]}
+                      edges={[{ from: 'a', to: 'b' }]}
+                      variant={v}
+                      directed={true}
+                      height={120}
+                      style={{ width: '100%' }} />
+                  </div>
+                ))}
+        </div>
+      </Section>
+      <Section title="NODE STATUS COLORS">
+        <NodeGraph
+          nodes={[
             { id: 'a', label: 'ACTIVE',   x: 12, y: 50, status: 'ACTIVE'   },
             { id: 'b', label: 'WARNING',  x: 35, y: 50, status: 'WARNING'  },
             { id: 'c', label: 'CRITICAL', x: 58, y: 50, status: 'CRITICAL' },
             { id: 'd', label: 'OFFLINE',  x: 80, y: 50, status: 'OFFLINE'  },
-          ],
-          edges: [
+          ]}
+          edges={[
             { from: 'a', to: 'b' },
             { from: 'b', to: 'c' },
             { from: 'c', to: 'd' },
-          ],
-          title: "NODE STATUS STATES"  ,
-          height: 160,
-          style: { width: '100%' }}
-        )
-      )
-      , React.createElement(Section, { title: "PROPS"}
-        , React.createElement(PropsTable, {
-          rows: [
+          ]}
+          title="NODE STATUS STATES"
+          height={160}
+          style={{ width: '100%' }} />
+      </Section>
+      <Section title="PROPS">
+        <PropsTable
+          rows={[
             { prop: 'nodes',    type: 'NodeGraphNode[]',                         defaultValue: '—',       description: 'Array of nodes. x/y are 0–100 coordinate space.' },
             { prop: 'edges',    type: 'NodeGraphEdge[]',                         defaultValue: '—',       description: 'Array of from/to edge connections.' },
             { prop: 'variant',  type: 'DEFAULT | ACTIVE | WARNING | CRITICAL',   defaultValue: 'ACTIVE',  description: 'Controls default edge and fallback node color.' },
@@ -149,9 +145,8 @@ export function NodeGraphContent() {
             { prop: 'height',   type: 'number',                                  defaultValue: '320',      description: 'SVG height in px.' },
             { prop: 'directed', type: 'boolean',                                 defaultValue: 'false',    description: 'Show arrowheads on edges.' },
             { prop: 'className', type: 'string',                                 defaultValue: '—',        description: 'Additional classes merged via cn().' },
-          ]}
-        )
-      )
-    )
-  )
+          ]} />
+      </Section>
+    </div>
+  );
 }

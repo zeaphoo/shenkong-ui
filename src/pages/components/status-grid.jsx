@@ -1,6 +1,3 @@
-import React from 'react'
-
-
 import { StatusGrid, } from '@/ui/status-grid'
 import { PageHeader } from '@/components/docs/page-header'
 import { Section } from '@/components/docs/section'
@@ -58,86 +55,74 @@ const systems: SystemEntry[] = [
 
 export default function Page() {
   return (
-    React.createElement('div', {}
-      , React.createElement(PageHeader, {
-        title: "STATUS GRID" ,
-        description: "System health board for dashboards. Each row shows a service name with a live status dot and label. Supports 1–3 column layouts."                     }
-      )
-
-      , React.createElement(Section, { title: "PREVIEW"}
-        , React.createElement(ComponentPreview, {
-          code: previewCode,
-          preview: 
-            React.createElement(StatusGrid, {
-              systems: demoSystems,
-              title: "SHIP SYSTEMS" ,
-              columns: 2,
-              style: { width: '100%' }}
-            )
-          }
-        )
-      )
-
-      , React.createElement(Section, { title: "INSTALLATION"}
-        , React.createElement(CodeBlock, { code: installCode, language: "bash"} )
-      )
-
-      , React.createElement(Section, { title: "USAGE"}
-        , React.createElement(CodeBlock, { code: usageCode} )
-      )
-
-      , React.createElement(Section, { title: "COLUMNS"}
-        , React.createElement('div', { style: { display: 'flex', flexDirection: 'column', gap: '1.5rem' }}
-          , ([1, 2, 3] ).map((cols) => (
-            React.createElement('div', { key: cols}
-              , React.createElement('p', { style: { marginBottom: '0.5rem', fontSize: '0.65rem', color: 'var(--text-muted)', letterSpacing: '0.1em' }}, "columns="
-                , cols
-              )
-              , React.createElement(StatusGrid, {
-                systems: demoSystems.slice(0, cols * 2),
-                columns: cols,
-                style: { width: '100%' }}
-              )
-            )
-          ))
-        )
-      )
-
-      , React.createElement(Section, { title: "STATUSES"}
-        , React.createElement(StatusGrid, {
-          title: "STATUS REFERENCE" ,
-          columns: 1,
-          style: { width: '100%' },
-          systems: [
+    <div>
+      <PageHeader
+        title="STATUS GRID"
+        description="System health board for dashboards. Each row shows a service name with a live status dot and label. Supports 1–3 column layouts." />
+      <Section title="PREVIEW">
+        <ComponentPreview
+          code={previewCode}
+          preview={
+            <StatusGrid
+              systems={demoSystems}
+              title="SHIP SYSTEMS"
+              columns={2}
+              style={{ width: '100%' }} />
+          } />
+      </Section>
+      <Section title="INSTALLATION">
+        <CodeBlock code={installCode} language="bash" />
+      </Section>
+      <Section title="USAGE">
+        <CodeBlock code={usageCode} />
+      </Section>
+      <Section title="COLUMNS">
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+          {([1, 2, 3] ).map((cols) => (
+                  <div key={cols}>
+                    <p
+                      style={{ marginBottom: '0.5rem', fontSize: '0.65rem', color: 'var(--text-muted)', letterSpacing: '0.1em' }}>
+                      columns=
+                      {cols}
+                    </p>
+                    <StatusGrid
+                      systems={demoSystems.slice(0, cols * 2)}
+                      columns={cols}
+                      style={{ width: '100%' }} />
+                  </div>
+                ))}
+        </div>
+      </Section>
+      <Section title="STATUSES">
+        <StatusGrid
+          title="STATUS REFERENCE"
+          columns={1}
+          style={{ width: '100%' }}
+          systems={[
             { name: 'ACTIVE',   status: 'ACTIVE',   detail: 'nominal operation' },
             { name: 'SCANNING', status: 'SCANNING', detail: 'pulsing dot, in progress' },
             { name: 'WARNING',  status: 'WARNING',  detail: 'degraded or partial' },
             { name: 'CRITICAL', status: 'CRITICAL', detail: 'failure or overheat' },
             { name: 'OFFLINE',  status: 'OFFLINE',  detail: 'powered down' },
-          ]}
-        )
-      )
-
-      , React.createElement(Section, { title: "PROPS"}
-        , React.createElement(PropsTable, {
-          rows: [
+          ]} />
+      </Section>
+      <Section title="PROPS">
+        <PropsTable
+          rows={[
             { prop: 'systems',  type: 'SystemEntry[]', defaultValue: '—',    description: 'Array of system entries to display.' },
             { prop: 'title',    type: 'string',        defaultValue: 'undefined', description: 'Optional header label shown above the grid.' },
             { prop: 'columns',  type: '1 | 2 | 3',    defaultValue: '1',    description: 'Number of columns in the grid layout.' },
             { prop: 'className',type: 'string',        defaultValue: '—',    description: 'Additional classes merged via cn().' },
-          ]}
-        )
-      )
-
-      , React.createElement(Section, { title: "SYSTEMENTRY FIELDS" }
-        , React.createElement(PropsTable, {
-          rows: [
+          ]} />
+      </Section>
+      <Section title="SYSTEMENTRY FIELDS">
+        <PropsTable
+          rows={[
             { prop: 'name',   type: 'string',                                           defaultValue: '—',         description: 'Service or system name displayed on the left.' },
             { prop: 'status', type: 'ACTIVE | OFFLINE | WARNING | CRITICAL | SCANNING', defaultValue: '—',         description: 'Controls the dot color, glow, and status label.' },
             { prop: 'detail', type: 'string',                                           defaultValue: 'undefined', description: 'Optional muted secondary text shown beside the name.' },
-          ]}
-        )
-      )
-    )
-  )
+          ]} />
+      </Section>
+    </div>
+  );
 }

@@ -1,4 +1,3 @@
-import React from 'react'
 
 import { Link } from 'react-router-dom'
 import { useLocation } from 'react-router-dom'
@@ -70,8 +69,8 @@ export function Sidebar({ isOpen, onClose }) {
   const pathname = useLocation().pathname
 
   return (
-    React.createElement('nav', {
-      style: {
+    <nav
+      style={{
         width: '220px',
         minHeight: '100vh',
         borderRight: '1px solid var(--border)',
@@ -91,106 +90,101 @@ export function Sidebar({ isOpen, onClose }) {
               transition: 'transform 0.25s ease',
             }
           : {}),
-      }}
-
-      /* Brand */
-      , React.createElement(Link, {
-        to: "/",
-        style: {
+      }}>
+      {<Link
+        to="/"
+        style={{
           display: 'block',
           padding: '1rem 1.25rem',
           borderBottom: '1px solid var(--border)',
           textDecoration: 'none',
-        }}
-
-        , React.createElement('div', { style: { display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}
-          , React.createElement('div', {}
-            , React.createElement('div', {
-              style: {
+        }}>
+        <div
+          style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <div>
+            <div
+              style={{
                 color: 'var(--color-green)',
                 fontSize: '1rem',
                 fontWeight: 700,
                 letterSpacing: '0.05em',
                 textShadow: 'var(--text-glow-green)',
-              }}
-, "SHENKONG/UI"
-
-            )
-            , React.createElement('div', {
-              style: {
+              }}>
+              SHENKONG/UI
+            </div>
+            <div
+              style={{
                 color: 'var(--text-muted)',
                 fontSize: '0.65rem',
                 marginTop: '2px',
                 letterSpacing: '0.08em',
-              }}
-, "MODERN SCI-FI COMPONENTS"
+              }}>
+              MODERN SCI-FI COMPONENTS
+            </div>
+          </div>
+          {isNarrow && (
+                  <button
+                    onClick={(e) => { e.preventDefault(); onClose() }}
+                    style={{
+                      background: 'transparent',
+                      border: 'none',
+                      color: 'var(--text-muted)',
+                      cursor: 'pointer',
+                      fontSize: '1rem',
+                      fontFamily: 'var(--font-mono)',
+                      padding: '0.25rem 0.5rem',
+                      lineHeight: 1,
+                    }}
+                    aria-label="Close menu">
+                    ✕
+                  </button>
+                )}
+        </div>
+      </Link>
 
-            )
-          )
-          , isNarrow && (
-            React.createElement('button', {
-              onClick: (e) => { e.preventDefault(); onClose() },
-              style: {
-                background: 'transparent',
-                border: 'none',
-                color: 'var(--text-muted)',
-                cursor: 'pointer',
-                fontSize: '1rem',
-                fontFamily: 'var(--font-mono)',
-                padding: '0.25rem 0.5rem',
-                lineHeight: 1,
-              },
-              'aria-label': "Close menu" }
-, "✕"
+      /* Nav sections */}
+      <div style={{ padding: '1rem 0', flex: 1, overflowY: 'auto' }}>
+        {navSections.map((section) => (
+              <div key={section.label} style={{ marginBottom: '1.5rem' }}>
+                <div
+                  style={{
+                    padding: '0 1.25rem 0.4rem',
+                    fontSize: '0.6rem',
+                    color: 'var(--text-muted)',
+                    letterSpacing: '0.12em',
+                  }}>
+                  {section.label}
+                </div>
+                {section.items.map((item) => {
+                    const isActive = pathname === item.href
+                    return (
+                      <Link
+                        key={item.href}
+                        to={item.href}
+                        onClick={isNarrow ? onClose : undefined}
+                        style={{
+                          display: 'block',
+                          padding: '0.3rem 1.25rem',
+                          fontSize: '0.75rem',
+                          textDecoration: 'none',
+                          color: isActive ? 'var(--color-green)' : 'var(--text-secondary)',
+                          background: isActive ? 'var(--surface-raised)' : 'transparent',
+                          borderLeft: isActive
+                            ? '2px solid var(--color-green)'
+                            : '2px solid transparent',
+                          letterSpacing: '0.05em',
+                          textShadow: isActive ? 'var(--text-glow-green)' : 'none',
+                          transition: 'all 0.15s',
+                        }}>
+                        {item.label}
+                      </Link>
+                    );
+                  })}
+              </div>
+            ))}
+      </div>
+    </nav>
 
-            )
-          )
-        )
-      )
-
-      /* Nav sections */
-      , React.createElement('div', { style: { padding: '1rem 0', flex: 1, overflowY: 'auto' }}
-        , navSections.map((section) => (
-          React.createElement('div', { key: section.label, style: { marginBottom: '1.5rem' }}
-            , React.createElement('div', {
-              style: {
-                padding: '0 1.25rem 0.4rem',
-                fontSize: '0.6rem',
-                color: 'var(--text-muted)',
-                letterSpacing: '0.12em',
-              }}
-
-              , section.label
-            )
-            , section.items.map((item) => {
-              const isActive = pathname === item.href
-              return (
-                React.createElement(Link, {
-                  key: item.href,
-                  to: item.href,
-                  onClick: isNarrow ? onClose : undefined,
-                  style: {
-                    display: 'block',
-                    padding: '0.3rem 1.25rem',
-                    fontSize: '0.75rem',
-                    textDecoration: 'none',
-                    color: isActive ? 'var(--color-green)' : 'var(--text-secondary)',
-                    background: isActive ? 'var(--surface-raised)' : 'transparent',
-                    borderLeft: isActive
-                      ? '2px solid var(--color-green)'
-                      : '2px solid transparent',
-                    letterSpacing: '0.05em',
-                    textShadow: isActive ? 'var(--text-glow-green)' : 'none',
-                    transition: 'all 0.15s',
-                  }}
-
-                  , item.label
-                )
-              )
-            })
-          )
-        ))
-      )
-    )
-  )
+    /* Brand */
+  );
 }

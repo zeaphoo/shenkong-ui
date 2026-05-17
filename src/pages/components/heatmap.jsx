@@ -1,6 +1,3 @@
-import React from 'react'
-
-
 import { Heatmap } from '@/ui/heatmap'
 import { PageHeader } from '@/components/docs/page-header'
 import { Section } from '@/components/docs/section'
@@ -60,58 +57,56 @@ const labeled: HeatmapCell[] = data.map((v, i) => ({
 
 export default function Page() {
   return (
-    React.createElement('div', {}
-      , React.createElement(PageHeader, {
-        title: "HEATMAP",
-        description: "Grid of colored cells showing density or activity over time. Opacity scales linearly with value. Supports row and column labels."                   }
-      )
-
-      , React.createElement(Section, { title: "PREVIEW"}
-        , React.createElement(ComponentPreview, {
-          code: previewCode,
-          preview: 
-            React.createElement(Heatmap, {
-              data: uptimeData,
-              columns: 24,
-              rowLabels: weekLabels,
-              colLabels: hourLabels,
-              title: "UPTIME GRID — LAST 7 DAYS"     ,
-              variant: "GREEN",
-              cellSize: 18}
-            )
-          }
-        )
-      )
-
-      , React.createElement(Section, { title: "INSTALLATION"}
-        , React.createElement(CodeBlock, { code: installCode, language: "bash"} )
-      )
-
-      , React.createElement(Section, { title: "USAGE"}
-        , React.createElement(CodeBlock, { code: usageCode} )
-      )
-
-      , React.createElement(Section, { title: "VARIANTS"}
-        , React.createElement('div', { style: { display: 'flex', gap: '2rem', flexWrap: 'wrap' }}
-          , (['GREEN', 'AMBER', 'RED'] ).map((v) => {
-            const demo = Array.from({ length: 40 }, (_, i) => ({
-              value: Math.round((i / 39) * 100),
-            }))
-            return (
-              React.createElement('div', { key: v, style: { display: 'flex', flexDirection: 'column', gap: '0.5rem' }}
-                , React.createElement(Heatmap, { data: demo, columns: 10, variant: v, cellSize: 20} )
-                , React.createElement('span', { style: { fontSize: '0.6rem', color: 'var(--text-muted)', letterSpacing: '0.08em' }}, "variant=\""
-                  , v, "\""
-                )
-              )
-            )
-          })
-        )
-      )
-
-      , React.createElement(Section, { title: "PROPS"}
-        , React.createElement(PropsTable, {
-          rows: [
+    <div>
+      <PageHeader
+        title="HEATMAP"
+        description="Grid of colored cells showing density or activity over time. Opacity scales linearly with value. Supports row and column labels." />
+      <Section title="PREVIEW">
+        <ComponentPreview
+          code={previewCode}
+          preview={
+            <Heatmap
+              data={uptimeData}
+              columns={24}
+              rowLabels={weekLabels}
+              colLabels={hourLabels}
+              title="UPTIME GRID — LAST 7 DAYS"
+              variant="GREEN"
+              cellSize={18}
+            />
+          } />
+      </Section>
+      <Section title="INSTALLATION">
+        <CodeBlock code={installCode} language="bash" />
+      </Section>
+      <Section title="USAGE">
+        <CodeBlock code={usageCode} />
+      </Section>
+      <Section title="VARIANTS">
+        <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap' }}>
+          {(['GREEN', 'AMBER', 'RED'] ).map((v) => {
+                  const demo = Array.from({ length: 40 }, (_, i) => ({
+                    value: Math.round((i / 39) * 100),
+                  }))
+                  return (
+                    <div
+                      key={v}
+                      style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                      <Heatmap data={demo} columns={10} variant={v} cellSize={20} />
+                      <span
+                        style={{ fontSize: '0.6rem', color: 'var(--text-muted)', letterSpacing: '0.08em' }}>
+                        variant="
+                        {v}
+                        "
+                      </span>
+                    </div>
+                  );
+                })}
+        </div>
+      </Section>
+      <Section title="PROPS">
+        <PropsTable
+          rows={[
             { prop: 'data',       type: 'HeatmapCell[] | number[]', defaultValue: '—',         description: 'Flat array of cells, filled left-to-right, top-to-bottom.' },
             { prop: 'columns',    type: 'number',                   defaultValue: '—',         description: 'Number of columns in the grid.' },
             { prop: 'variant',    type: 'GREEN | AMBER | RED',      defaultValue: '"GREEN"',   description: 'Color scale applied to cell intensity.' },
@@ -121,18 +116,15 @@ export default function Page() {
             { prop: 'colLabels',  type: 'string[]',                 defaultValue: 'undefined', description: 'Labels shown above each column.' },
             { prop: 'title',      type: 'string',                   defaultValue: 'undefined', description: 'Header label shown at the top.' },
             { prop: 'className',  type: 'string',                   defaultValue: '—',         description: 'Additional classes merged via cn().' },
-          ]}
-        )
-      )
-
-      , React.createElement(Section, { title: "HEATMAPCELL FIELDS" }
-        , React.createElement(PropsTable, {
-          rows: [
+          ]} />
+      </Section>
+      <Section title="HEATMAPCELL FIELDS">
+        <PropsTable
+          rows={[
             { prop: 'value', type: 'number', defaultValue: '—',         description: 'Raw value. Normalized against max to compute opacity.' },
             { prop: 'label', type: 'string', defaultValue: 'undefined', description: 'Tooltip text shown on hover (native browser title).' },
-          ]}
-        )
-      )
-    )
-  )
+          ]} />
+      </Section>
+    </div>
+  );
 }

@@ -1,4 +1,3 @@
-import React from 'react'
 
 
 import { StatCardContent } from '@/pages/components/stat-card-content'
@@ -10,5 +9,5 @@ const metadata = {
 }
 
 export default function Page() {
-  return React.createElement(StatCardContent, {} )
+  return <StatCardContent />;
 }

@@ -1,4 +1,3 @@
-import React from 'react'
 
 
 import { NodeGraphContent } from '@/pages/components/node-graph-content'
@@ -10,5 +9,5 @@ const metadata = {
 }
 
 export default function Page() {
-  return React.createElement(NodeGraphContent, {} )
+  return <NodeGraphContent />;
 }

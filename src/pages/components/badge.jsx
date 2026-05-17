@@ -1,6 +1,3 @@
-import React from 'react'
-
-
 import { Badge } from '@/ui/badge'
 import { PageHeader } from '@/components/docs/page-header'
 import { Section } from '@/components/docs/section'
@@ -37,73 +34,68 @@ export function StatusBar() {
 
 export default function Page() {
   return (
-    React.createElement('div', {}
-      , React.createElement(PageHeader, {
-        title: "BADGE",
-        description: "Compact status indicator with semantic variants. Monospace font, uppercase, minimal padding. SCANNING variant includes a blink animation."                }
-      )
-
-      , React.createElement(Section, { title: "PREVIEW"}
-        , React.createElement(ComponentPreview, {
-          code: previewCode,
-          preview: 
-            React.createElement(React.Fragment, null
-              , React.createElement(Badge, { variant: "ACTIVE"}, "ONLINE")
-              , React.createElement(Badge, { variant: "SCANNING"}, "SCANNING")
-              , React.createElement(Badge, { variant: "WARNING"}, "WARNING")
-              , React.createElement(Badge, { variant: "CRITICAL"}, "CRITICAL")
-              , React.createElement(Badge, { variant: "OFFLINE"}, "OFFLINE")
-            )
-          }
-        )
-      )
-
-      , React.createElement(Section, { title: "INSTALLATION"}
-        , React.createElement(CodeBlock, { code: installCode, language: "bash"} )
-      )
-
-      , React.createElement(Section, { title: "USAGE"}
-        , React.createElement(CodeBlock, { code: usageCode} )
-      )
-
-      , React.createElement(Section, { title: "VARIANTS"}
-        , React.createElement('div', {
-          style: {
+    <div>
+      <PageHeader
+        title="BADGE"
+        description="Compact status indicator with semantic variants. Monospace font, uppercase, minimal padding. SCANNING variant includes a blink animation." />
+      <Section title="PREVIEW">
+        <ComponentPreview
+          code={previewCode}
+          preview={
+            <>
+              <Badge variant="ACTIVE">ONLINE</Badge>
+              <Badge variant="SCANNING">SCANNING</Badge>
+              <Badge variant="WARNING">WARNING</Badge>
+              <Badge variant="CRITICAL">CRITICAL</Badge>
+              <Badge variant="OFFLINE">OFFLINE</Badge>
+            </>
+          } />
+      </Section>
+      <Section title="INSTALLATION">
+        <CodeBlock code={installCode} language="bash" />
+      </Section>
+      <Section title="USAGE">
+        <CodeBlock code={usageCode} />
+      </Section>
+      <Section title="VARIANTS">
+        <div
+          style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))',
             gap: '1rem',
-          }}
-
-          , (['ACTIVE', 'SCANNING', 'WARNING', 'CRITICAL', 'OFFLINE'] ).map((v) => (
-            React.createElement('div', {
-              key: v,
-              style: {
-                display:        'flex',
-                flexDirection:  'column',
-                alignItems:     'center',
-                gap:            '0.75rem',
-                padding:        '1.25rem',
-                border:         '1px solid var(--border)',
-                background:     'var(--surface)',
-              }}
-
-              , React.createElement(Badge, { variant: v}, v)
-              , React.createElement('span', { style: { fontSize: '0.65rem', color: 'var(--text-muted)', letterSpacing: '0.08em' }}, "variant=\""
-                , v, "\""
-              )
-            )
-          ))
-        )
-      )
-
-      , React.createElement(Section, { title: "PROPS"}
-        , React.createElement(PropsTable, {
-          rows: [
+          }}>
+          {(['ACTIVE', 'SCANNING', 'WARNING', 'CRITICAL', 'OFFLINE'] ).map((v) => (
+                  <div
+                    key={v}
+                    style={{
+                      display:        'flex',
+                      flexDirection:  'column',
+                      alignItems:     'center',
+                      gap:            '0.75rem',
+                      padding:        '1.25rem',
+                      border:         '1px solid var(--border)',
+                      background:     'var(--surface)',
+                    }}>
+                    <Badge variant={v}>
+                      {v}
+                    </Badge>
+                    <span
+                      style={{ fontSize: '0.65rem', color: 'var(--text-muted)', letterSpacing: '0.08em' }}>
+                      variant="
+                      {v}
+                      "
+                    </span>
+                  </div>
+                ))}
+        </div>
+      </Section>
+      <Section title="PROPS">
+        <PropsTable
+          rows={[
             { prop: 'variant',   type: 'ACTIVE | SCANNING | WARNING | CRITICAL | OFFLINE', defaultValue: 'ACTIVE', description: 'Controls color, glow, and animated prefix symbol.' },
             { prop: 'className', type: 'string',                                            defaultValue: '—',      description: 'Additional classes merged via cn().' },
-          ]}
-        )
-      )
-    )
-  )
+          ]} />
+      </Section>
+    </div>
+  );
 }

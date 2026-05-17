@@ -1,6 +1,3 @@
-import React from 'react'
-
-
 import { Label } from '@/ui/label'
 import { Input } from '@/ui/input'
 import { PageHeader } from '@/components/docs/page-header'
@@ -31,32 +28,30 @@ export function Example() {
 
 export default function Page() {
   return (
-    React.createElement('div', {}
-      , React.createElement(PageHeader, {
-        title: "LABEL",
-        description: "Accessible form label using Radix UI Label primitive."       ,
-        dependencies: ['@radix-ui/react-label']}
-      )
-      , React.createElement(Section, { title: "PREVIEW"}
-        , React.createElement(ComponentPreview, {
-          code: previewCode,
-          preview: 
-            React.createElement('div', { className: "flex flex-col gap-2"  }
-              , React.createElement(Label, { htmlFor: "demo-callsign"}, "CALLSIGN")
-              , React.createElement(Input, { id: "demo-callsign", placeholder: "ENTER CALLSIGN" } )
-            )
-          }
-        )
-      )
-      , React.createElement(Section, { title: "INSTALLATION"}
-        , React.createElement(CodeBlock, { code: "npx shadcn@latest add @shenkong/label"   , language: "bash"} )
-      )
-      , React.createElement(Section, { title: "USAGE"}
-        , React.createElement(CodeBlock, { code: usageCode} )
-      )
-      , React.createElement(Section, { title: "PROPS"}
-        , React.createElement(PropsTable, {
-          rows: [
+    <div>
+      <PageHeader
+        title="LABEL"
+        description="Accessible form label using Radix UI Label primitive."
+        dependencies={['@radix-ui/react-label']} />
+      <Section title="PREVIEW">
+        <ComponentPreview
+          code={previewCode}
+          preview={
+            <div className="flex flex-col gap-2">
+              <Label htmlFor="demo-callsign">CALLSIGN</Label>
+              <Input id="demo-callsign" placeholder="ENTER CALLSIGN" />
+            </div>
+          } />
+      </Section>
+      <Section title="INSTALLATION">
+        <CodeBlock code="npx shadcn@latest add @shenkong/label" language="bash" />
+      </Section>
+      <Section title="USAGE">
+        <CodeBlock code={usageCode} />
+      </Section>
+      <Section title="PROPS">
+        <PropsTable
+          rows={[
             {
               prop: 'htmlFor',
               type: 'string',
@@ -69,9 +64,8 @@ export default function Page() {
               defaultValue: '—',
               description: 'Additional CSS classes.',
             },
-          ]}
-        )
-      )
-    )
-  )
+          ]} />
+      </Section>
+    </div>
+  );
 }

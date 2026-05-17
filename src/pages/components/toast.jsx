@@ -1,6 +1,3 @@
-import React from 'react'
-
-
 import {
   ToastProvider,
   Toast, ToastTitle, ToastDescription,
@@ -63,75 +60,75 @@ export function MyComponent() {
 
 export default function Page() {
   return (
-    React.createElement('div', {}
-      , React.createElement(PageHeader, {
-        title: "TOAST",
-        description: "Non-blocking notification built on Radix UI. Slides in from bottom-right. Four semantic variants. Managed via useToast hook with auto-dismiss."                  ,
-        dependencies: ['@radix-ui/react-toast']}
-      )
-
-      , React.createElement(Section, { title: "PREVIEW"}
-        , React.createElement(ComponentPreview, {
-          code: previewCode,
-          preview: React.createElement(ToastDemo, {} )}
-        )
-      )
-
-      , React.createElement(Section, { title: "INSTALLATION"}
-        , React.createElement(CodeBlock, { code: installCode, language: "bash"} )
-        , React.createElement('p', { style: { marginTop: '0.75rem', fontSize: '0.8rem', color: 'var(--text-muted)' }}, "Then copy "
-            , React.createElement('span', { style: { color: 'var(--color-green)' }}, "src/ui/toast.jsx"), " and" , ' '
-        )
-      )
-
-      , React.createElement(Section, { title: "HOOK USAGE" }
-        , React.createElement(CodeBlock, { code: hookUsageCode} )
-      )
-
-      , React.createElement(Section, { title: "VARIANTS"}
-        , React.createElement('div', {
-          style: {
+    <div>
+      <PageHeader
+        title="TOAST"
+        description="Non-blocking notification built on Radix UI. Slides in from bottom-right. Four semantic variants. Managed via useToast hook with auto-dismiss."
+        dependencies={['@radix-ui/react-toast']} />
+      <Section title="PREVIEW">
+        <ComponentPreview code={previewCode} preview={<ToastDemo />} />
+      </Section>
+      <Section title="INSTALLATION">
+        <CodeBlock code={installCode} language="bash" />
+        <p
+          style={{ marginTop: '0.75rem', fontSize: '0.8rem', color: 'var(--text-muted)' }}>
+          {"Then copy "}
+          <span style={{ color: 'var(--color-green)' }}>
+            src/ui/toast.jsx
+          </span>
+          {" and"}
+          {' '}
+        </p>
+      </Section>
+      <Section title="HOOK USAGE">
+        <CodeBlock code={hookUsageCode} />
+      </Section>
+      <Section title="VARIANTS">
+        <div
+          style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
             gap: '0.75rem',
-          }}
-
-          , (['STATUS', 'WARNING', 'CRITICAL', 'INFO'] ).map((v) => (
-            React.createElement('div', { key: v, style: { display: 'flex', flexDirection: 'column', gap: '0.4rem' }}
-              , React.createElement(ToastProvider, {}
-                , React.createElement(Toast, { variant: v, open: true}
-                  , React.createElement(ToastTitle, {}
-                    , v === 'STATUS'   && 'SYSTEM NOMINAL'
-                    , v === 'WARNING'  && 'LOW POWER ALERT'
-                    , v === 'CRITICAL' && 'BREACH DETECTED'
-                    , v === 'INFO'     && 'MAINTENANCE WINDOW'
-                  )
-                  , React.createElement(ToastDescription, {}
-                    , v === 'STATUS'   && 'All subsystems operational.'
-                    , v === 'WARNING'  && 'Power reserves below 20%.'
-                    , v === 'CRITICAL' && 'Evacuate affected sectors.'
-                    , v === 'INFO'     && 'Scheduled in 48 hours.'
-                  )
-                )
-              )
-              , React.createElement('span', { style: { fontSize: '0.65rem', color: 'var(--text-muted)', letterSpacing: '0.08em' }}, "variant=\""
-                , v, "\""
-              )
-            )
-          ))
-        )
-      )
-
-      , React.createElement(Section, { title: "PROPS"}
-        , React.createElement(PropsTable, {
-          rows: [
+          }}>
+          {(['STATUS', 'WARNING', 'CRITICAL', 'INFO'] ).map((v) => (
+                  <div
+                    key={v}
+                    style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+                    <ToastProvider>
+                      <Toast variant={v} open={true}>
+                        <ToastTitle>
+                          {v === 'STATUS'   && 'SYSTEM NOMINAL'}
+                          {v === 'WARNING'  && 'LOW POWER ALERT'}
+                          {v === 'CRITICAL' && 'BREACH DETECTED'}
+                          {v === 'INFO'     && 'MAINTENANCE WINDOW'}
+                        </ToastTitle>
+                        <ToastDescription>
+                          {v === 'STATUS'   && 'All subsystems operational.'}
+                          {v === 'WARNING'  && 'Power reserves below 20%.'}
+                          {v === 'CRITICAL' && 'Evacuate affected sectors.'}
+                          {v === 'INFO'     && 'Scheduled in 48 hours.'}
+                        </ToastDescription>
+                      </Toast>
+                    </ToastProvider>
+                    <span
+                      style={{ fontSize: '0.65rem', color: 'var(--text-muted)', letterSpacing: '0.08em' }}>
+                      variant="
+                      {v}
+                      "
+                    </span>
+                  </div>
+                ))}
+        </div>
+      </Section>
+      <Section title="PROPS">
+        <PropsTable
+          rows={[
             { prop: 'variant',     type: 'STATUS | WARNING | CRITICAL | INFO', defaultValue: 'STATUS', description: 'Controls left border color, glow, and prefix symbol.' },
             { prop: 'open',        type: 'boolean',                            defaultValue: '—',      description: 'Controlled open state (used by ToastProvider internally).' },
             { prop: 'onOpenChange',type: '(open: boolean) => void',            defaultValue: '—',      description: 'Callback when open state changes.' },
             { prop: 'duration',    type: 'number (on toast() call)',           defaultValue: '4000',   description: 'Auto-dismiss delay in milliseconds.' },
-          ]}
-        )
-      )
-    )
-  )
+          ]} />
+      </Section>
+    </div>
+  );
 }

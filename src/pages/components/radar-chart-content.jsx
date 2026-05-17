@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { RadarChart } from '@/ui/radar-chart'
 import { PageHeader } from '@/components/docs/page-header'
 import { Section } from '@/components/docs/section'
@@ -62,72 +60,82 @@ const data: RadarChartEntry[] = [
 export function RadarChartContent() {
   const narrow = useNarrow()
   return (
-    React.createElement('div', {}
-      , React.createElement(PageHeader, {
-        title: "RADAR CHART" ,
-        description: "SVG radar (spider) chart with configurable axes, concentric grid polygons, fade-in animation, and four color variants. Values normalized to 0–100."                   }
-      )
-      , React.createElement(Section, { title: "PREVIEW"}
-        , React.createElement(ComponentPreview, {
-          code: previewCode,
-          preview: 
-            React.createElement('div', { style: { display: 'flex', justifyContent: 'center' }}
-              , React.createElement(RadarChart, {
-                data: shipSystems,
-                title: "SHIP SYSTEMS // STATUS"   ,
-                variant: "ACTIVE",
-                size: 260}
-              )
-            )
-          }
-        )
-      )
-      , React.createElement(Section, { title: "INSTALLATION"}
-        , React.createElement(CodeBlock, { code: installCode, language: "bash"} )
-      )
-      , React.createElement(Section, { title: "USAGE"}
-        , React.createElement(CodeBlock, { code: usageCode} )
-      )
-      , React.createElement(Section, { title: "AXIS COUNTS" }
-        , React.createElement('div', { style: { display: 'grid', gridTemplateColumns: narrow ? '1fr' : 'repeat(3, 1fr)', gap: '1.5rem', justifyItems: 'center' }}
-          , React.createElement('div', { style: { textAlign: 'center' }}
-            , React.createElement('p', { style: { marginBottom: '0.5rem', fontSize: '0.6rem', color: 'var(--text-muted)', letterSpacing: '0.1em' }}, "5 AXES" )
-            , React.createElement(RadarChart, { data: crewData, size: 200} )
-          )
-          , React.createElement('div', { style: { textAlign: 'center' }}
-            , React.createElement('p', { style: { marginBottom: '0.5rem', fontSize: '0.6rem', color: 'var(--text-muted)', letterSpacing: '0.1em' }}, "6 AXES" )
-            , React.createElement(RadarChart, { data: shipSystems, size: 200, variant: "WARNING"} )
-          )
-          , React.createElement('div', { style: { textAlign: 'center' }}
-            , React.createElement('p', { style: { marginBottom: '0.5rem', fontSize: '0.6rem', color: 'var(--text-muted)', letterSpacing: '0.1em' }}, "8 AXES" )
-            , React.createElement(RadarChart, { data: threatData, size: 200, variant: "CRITICAL"} )
-          )
-        )
-      )
-      , React.createElement(Section, { title: "VARIANTS"}
-        , React.createElement('div', { style: { display: 'grid', gridTemplateColumns: narrow ? '1fr 1fr' : 'repeat(4, 1fr)', gap: '1rem', justifyItems: 'center' }}
-          , (['ACTIVE', 'WARNING', 'CRITICAL', 'DEFAULT'] ).map((v) => (
-            React.createElement('div', { key: v, style: { textAlign: 'center' }}
-              , React.createElement('p', { style: { marginBottom: '0.35rem', fontSize: '0.6rem', color: 'var(--text-muted)', letterSpacing: '0.1em' }}, v)
-              , React.createElement(RadarChart, { data: crewData, variant: v, size: 180} )
-            )
-          ))
-        )
-      )
-      , React.createElement(Section, { title: "WITH VALUES" }
-        , React.createElement('div', { style: { display: 'flex', justifyContent: 'center' }}
-          , React.createElement(RadarChart, {
-            data: shipSystems,
-            title: "SHIP SYSTEMS // SHOW VALUES"    ,
-            variant: "ACTIVE",
-            size: 260,
-            showValues: true}
-          )
-        )
-      )
-      , React.createElement(Section, { title: "PROPS"}
-        , React.createElement(PropsTable, {
-          rows: [
+    <div>
+      <PageHeader
+        title="RADAR CHART"
+        description="SVG radar (spider) chart with configurable axes, concentric grid polygons, fade-in animation, and four color variants. Values normalized to 0–100." />
+      <Section title="PREVIEW">
+        <ComponentPreview
+          code={previewCode}
+          preview={
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <RadarChart
+                data={shipSystems}
+                title="SHIP SYSTEMS // STATUS"
+                variant="ACTIVE"
+                size={260} />
+            </div>
+          } />
+      </Section>
+      <Section title="INSTALLATION">
+        <CodeBlock code={installCode} language="bash" />
+      </Section>
+      <Section title="USAGE">
+        <CodeBlock code={usageCode} />
+      </Section>
+      <Section title="AXIS COUNTS">
+        <div
+          style={{ display: 'grid', gridTemplateColumns: narrow ? '1fr' : 'repeat(3, 1fr)', gap: '1.5rem', justifyItems: 'center' }}>
+          <div style={{ textAlign: 'center' }}>
+            <p
+              style={{ marginBottom: '0.5rem', fontSize: '0.6rem', color: 'var(--text-muted)', letterSpacing: '0.1em' }}>
+              5 AXES
+            </p>
+            <RadarChart data={crewData} size={200} />
+          </div>
+          <div style={{ textAlign: 'center' }}>
+            <p
+              style={{ marginBottom: '0.5rem', fontSize: '0.6rem', color: 'var(--text-muted)', letterSpacing: '0.1em' }}>
+              6 AXES
+            </p>
+            <RadarChart data={shipSystems} size={200} variant="WARNING" />
+          </div>
+          <div style={{ textAlign: 'center' }}>
+            <p
+              style={{ marginBottom: '0.5rem', fontSize: '0.6rem', color: 'var(--text-muted)', letterSpacing: '0.1em' }}>
+              8 AXES
+            </p>
+            <RadarChart data={threatData} size={200} variant="CRITICAL" />
+          </div>
+        </div>
+      </Section>
+      <Section title="VARIANTS">
+        <div
+          style={{ display: 'grid', gridTemplateColumns: narrow ? '1fr 1fr' : 'repeat(4, 1fr)', gap: '1rem', justifyItems: 'center' }}>
+          {(['ACTIVE', 'WARNING', 'CRITICAL', 'DEFAULT'] ).map((v) => (
+                  <div key={v} style={{ textAlign: 'center' }}>
+                    <p
+                      style={{ marginBottom: '0.35rem', fontSize: '0.6rem', color: 'var(--text-muted)', letterSpacing: '0.1em' }}>
+                      {v}
+                    </p>
+                    <RadarChart data={crewData} variant={v} size={180} />
+                  </div>
+                ))}
+        </div>
+      </Section>
+      <Section title="WITH VALUES">
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <RadarChart
+            data={shipSystems}
+            title="SHIP SYSTEMS // SHOW VALUES"
+            variant="ACTIVE"
+            size={260}
+            showValues={true} />
+        </div>
+      </Section>
+      <Section title="PROPS">
+        <PropsTable
+          rows={[
             { prop: 'data',        type: 'RadarChartEntry[]',                        defaultValue: '—',        description: 'Array of { axis, value } entries. value is 0–100.' },
             { prop: 'variant',     type: 'DEFAULT | ACTIVE | WARNING | CRITICAL',    defaultValue: 'ACTIVE',   description: 'Controls polygon color and glow.' },
             { prop: 'title',       type: 'string',                                   defaultValue: 'undefined', description: 'Optional header label.' },
@@ -136,9 +144,8 @@ export function RadarChartContent() {
             { prop: 'showLabels',  type: 'boolean',                                  defaultValue: 'true',      description: 'Show axis labels at vertices.' },
             { prop: 'showValues',  type: 'boolean',                                  defaultValue: 'false',     description: 'Show numeric value near each vertex dot.' },
             { prop: 'className',   type: 'string',                                   defaultValue: '—',         description: 'Additional classes merged via cn().' },
-          ]}
-        )
-      )
-    )
-  )
+          ]} />
+      </Section>
+    </div>
+  );
 }

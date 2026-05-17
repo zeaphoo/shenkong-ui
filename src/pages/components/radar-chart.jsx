@@ -1,4 +1,3 @@
-import React from 'react'
 
 
 import { RadarChartContent } from '@/pages/components/radar-chart-content'
@@ -10,5 +9,5 @@ const metadata = {
 }
 
 export default function Page() {
-  return React.createElement(RadarChartContent, {} )
+  return <RadarChartContent />;
 }

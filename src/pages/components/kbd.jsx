@@ -1,6 +1,3 @@
-import React from 'react'
-
-
 import { Kbd } from '@/ui/kbd'
 import { PageHeader } from '@/components/docs/page-header'
 import { Section } from '@/components/docs/section'
@@ -31,33 +28,31 @@ export function Example() {
 
 export default function Page() {
   return (
-    React.createElement('div', {}
-      , React.createElement(PageHeader, {
-        title: "KBD",
-        description: "Keyboard key display element styled as a terminal key cap."         }
-      )
-      , React.createElement(Section, { title: "PREVIEW"}
-        , React.createElement(ComponentPreview, {
-          code: previewCode,
-          preview: 
-            React.createElement('div', { className: "flex items-center gap-2"  }
-              , React.createElement(Kbd, {}, "Ctrl")
-              , React.createElement(Kbd, {}, "⌘")
-              , React.createElement(Kbd, {}, "⇧")
-              , React.createElement(Kbd, {}, "Enter")
-            )
-          }
-        )
-      )
-      , React.createElement(Section, { title: "INSTALLATION"}
-        , React.createElement(CodeBlock, { code: "npx shadcn@latest add @shenkong/kbd"   , language: "bash"} )
-      )
-      , React.createElement(Section, { title: "USAGE"}
-        , React.createElement(CodeBlock, { code: usageCode} )
-      )
-      , React.createElement(Section, { title: "PROPS"}
-        , React.createElement(PropsTable, {
-          rows: [
+    <div>
+      <PageHeader
+        title="KBD"
+        description="Keyboard key display element styled as a terminal key cap." />
+      <Section title="PREVIEW">
+        <ComponentPreview
+          code={previewCode}
+          preview={
+            <div className="flex items-center gap-2">
+              <Kbd>Ctrl</Kbd>
+              <Kbd>⌘</Kbd>
+              <Kbd>⇧</Kbd>
+              <Kbd>Enter</Kbd>
+            </div>
+          } />
+      </Section>
+      <Section title="INSTALLATION">
+        <CodeBlock code="npx shadcn@latest add @shenkong/kbd" language="bash" />
+      </Section>
+      <Section title="USAGE">
+        <CodeBlock code={usageCode} />
+      </Section>
+      <Section title="PROPS">
+        <PropsTable
+          rows={[
             {
               prop: 'children',
               type: 'ReactNode',
@@ -70,9 +65,8 @@ export default function Page() {
               defaultValue: '—',
               description: 'Additional CSS classes.',
             },
-          ]}
-        )
-      )
-    )
-  )
+          ]} />
+      </Section>
+    </div>
+  );
 }

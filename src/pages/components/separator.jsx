@@ -1,6 +1,3 @@
-import React from 'react'
-
-
 import { Separator } from '@/ui/separator'
 import { PageHeader } from '@/components/docs/page-header'
 import { Section } from '@/components/docs/section'
@@ -35,68 +32,74 @@ export function Example() {
 
 export default function Page() {
   return (
-    React.createElement('div', {}
-      , React.createElement(PageHeader, {
-        title: "SEPARATOR",
-        description: "Thin horizontal or vertical divider built on Radix UI. Optional centered label splits the line for section headers."                 ,
-        dependencies: ['@radix-ui/react-separator']}
-      )
-
-      , React.createElement(Section, { title: "PREVIEW"}
-        , React.createElement(ComponentPreview, {
-          code: previewCode,
-          preview: 
-            React.createElement('div', { style: { width: '100%', maxWidth: '320px', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}
-              , React.createElement(Separator, {} )
-              , React.createElement(Separator, { label: "SECTION"} )
-              , React.createElement('div', { style: { display: 'flex', alignItems: 'center', gap: '1rem' }}
-                , React.createElement('span', { style: { fontSize: '0.75rem', color: 'var(--text-muted)' }}, "A")
-                , React.createElement(Separator, { orientation: "vertical", style: { height: '32px' }} )
-                , React.createElement('span', { style: { fontSize: '0.75rem', color: 'var(--text-muted)' }}, "B")
-              )
-            )
-          }
-        )
-      )
-
-      , React.createElement(Section, { title: "INSTALLATION"}
-        , React.createElement(CodeBlock, { code: installCode, language: "bash"} )
-      )
-
-      , React.createElement(Section, { title: "USAGE"}
-        , React.createElement(CodeBlock, { code: usageCode} )
-      )
-
-      , React.createElement(Section, { title: "VARIANTS"}
-        , React.createElement('div', { style: { display: 'flex', flexDirection: 'column', gap: '2rem' }}
-          , React.createElement('div', { style: { display: 'flex', flexDirection: 'column', gap: '0.5rem' }}
-            , React.createElement(Separator, {} )
-            , React.createElement('span', { style: { fontSize: '0.65rem', color: 'var(--text-muted)', letterSpacing: '0.08em' }}, "DEFAULT (horizontal)" )
-          )
-          , React.createElement('div', { style: { display: 'flex', flexDirection: 'column', gap: '0.5rem' }}
-            , React.createElement(Separator, { label: "CHECKPOINT"} )
-            , React.createElement('span', { style: { fontSize: '0.65rem', color: 'var(--text-muted)', letterSpacing: '0.08em' }}, "WITH LABEL" )
-          )
-          , React.createElement('div', { style: { display: 'flex', flexDirection: 'column', gap: '0.5rem' }}
-            , React.createElement('div', { style: { display: 'flex', alignItems: 'center', gap: '1rem', height: '40px' }}
-              , React.createElement('span', { style: { fontSize: '0.75rem', color: 'var(--text-muted)' }}, "LEFT")
-              , React.createElement(Separator, { orientation: "vertical", style: { height: '40px' }} )
-              , React.createElement('span', { style: { fontSize: '0.75rem', color: 'var(--text-muted)' }}, "RIGHT")
-            )
-            , React.createElement('span', { style: { fontSize: '0.65rem', color: 'var(--text-muted)', letterSpacing: '0.08em' }}, "VERTICAL")
-          )
-        )
-      )
-
-      , React.createElement(Section, { title: "PROPS"}
-        , React.createElement(PropsTable, {
-          rows: [
+    <div>
+      <PageHeader
+        title="SEPARATOR"
+        description="Thin horizontal or vertical divider built on Radix UI. Optional centered label splits the line for section headers."
+        dependencies={['@radix-ui/react-separator']} />
+      <Section title="PREVIEW">
+        <ComponentPreview
+          code={previewCode}
+          preview={
+            <div style={{ width: '100%', maxWidth: '320px', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+              <Separator />
+              <Separator label="SECTION" />
+              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>A</span>
+                <Separator orientation="vertical" style={{ height: '32px' }} />
+                <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>B</span>
+              </div>
+            </div>
+          } />
+      </Section>
+      <Section title="INSTALLATION">
+        <CodeBlock code={installCode} language="bash" />
+      </Section>
+      <Section title="USAGE">
+        <CodeBlock code={usageCode} />
+      </Section>
+      <Section title="VARIANTS">
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+            <Separator />
+            <span
+              style={{ fontSize: '0.65rem', color: 'var(--text-muted)', letterSpacing: '0.08em' }}>
+              DEFAULT (horizontal)
+            </span>
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+            <Separator label="CHECKPOINT" />
+            <span
+              style={{ fontSize: '0.65rem', color: 'var(--text-muted)', letterSpacing: '0.08em' }}>
+              WITH LABEL
+            </span>
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+            <div
+              style={{ display: 'flex', alignItems: 'center', gap: '1rem', height: '40px' }}>
+              <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
+                LEFT
+              </span>
+              <Separator orientation="vertical" style={{ height: '40px' }} />
+              <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
+                RIGHT
+              </span>
+            </div>
+            <span
+              style={{ fontSize: '0.65rem', color: 'var(--text-muted)', letterSpacing: '0.08em' }}>
+              VERTICAL
+            </span>
+          </div>
+        </div>
+      </Section>
+      <Section title="PROPS">
+        <PropsTable
+          rows={[
             { prop: 'label',       type: 'string',                       defaultValue: '—',          description: 'Text centered in the separator. Renders flex layout with line-line-text-line-line.' },
             { prop: 'orientation', type: '"horizontal" | "vertical"',    defaultValue: '"horizontal"',description: 'Direction of the separator line.' },
             { prop: 'decorative',  type: 'boolean',                      defaultValue: 'true',       description: 'When true, hidden from accessibility tree.' },
-          ]}
-        )
-      )
-    )
-  )
+          ]} />
+      </Section>
+    </div>
+  );
 }

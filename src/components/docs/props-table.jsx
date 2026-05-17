@@ -1,4 +1,3 @@
-import React from 'react'
 
 
 
@@ -32,38 +31,46 @@ export function PropsTable({ rows }) {
   }
 
   return (
-    React.createElement('div', { style: { border: '1px solid var(--border)', overflowX: 'auto' }}
-      , React.createElement('table', { style: { width: '100%', minWidth: '560px', borderCollapse: 'collapse', fontFamily: 'var(--font-mono)' }}
-        , React.createElement('thead', {}
-          , React.createElement('tr', {}
-            , React.createElement('th', { style: thStyle}, "PROP")
-            , React.createElement('th', { style: thStyle}, "TYPE")
-            , React.createElement('th', { style: thStyle}, "DEFAULT")
-            , React.createElement('th', { style: { ...thStyle, width: '100%' }}, "DESCRIPTION")
-          )
-        )
-        , React.createElement('tbody', {}
-          , rows.map((row, i) => (
-            React.createElement('tr', {
-              key: row.prop,
-              style: { background: i % 2 === 0 ? 'var(--surface)' : 'transparent' }}
-
-              , React.createElement('td', { style: { ...tdStyle, color: 'var(--color-green)', whiteSpace: 'nowrap' }}
-                , row.prop
-              )
-              , React.createElement('td', { style: { ...tdStyle, color: 'var(--color-blue)', whiteSpace: 'nowrap' }}
-                , row.type
-              )
-              , React.createElement('td', { style: { ...tdStyle, color: 'var(--color-amber)', whiteSpace: 'nowrap' }}
-                , row.defaultValue
-              )
-              , React.createElement('td', { style: { ...tdStyle, color: 'var(--text-secondary)' }}
-                , row.description
-              )
-            )
-          ))
-        )
-      )
-    )
-  )
+    <div style={{ border: '1px solid var(--border)', overflowX: 'auto' }}>
+      <table
+        style={{ width: '100%', minWidth: '560px', borderCollapse: 'collapse', fontFamily: 'var(--font-mono)' }}>
+        <thead>
+          <tr>
+            <th style={thStyle}>
+              PROP
+            </th>
+            <th style={thStyle}>
+              TYPE
+            </th>
+            <th style={thStyle}>
+              DEFAULT
+            </th>
+            <th style={{ ...thStyle, width: '100%' }}>
+              DESCRIPTION
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((row, i) => (
+                  <tr
+                    key={row.prop}
+                    style={{ background: i % 2 === 0 ? 'var(--surface)' : 'transparent' }}>
+                    <td style={{ ...tdStyle, color: 'var(--color-green)', whiteSpace: 'nowrap' }}>
+                      {row.prop}
+                    </td>
+                    <td style={{ ...tdStyle, color: 'var(--color-blue)', whiteSpace: 'nowrap' }}>
+                      {row.type}
+                    </td>
+                    <td style={{ ...tdStyle, color: 'var(--color-amber)', whiteSpace: 'nowrap' }}>
+                      {row.defaultValue}
+                    </td>
+                    <td style={{ ...tdStyle, color: 'var(--text-secondary)' }}>
+                      {row.description}
+                    </td>
+                  </tr>
+                ))}
+        </tbody>
+      </table>
+    </div>
+  );
 }
