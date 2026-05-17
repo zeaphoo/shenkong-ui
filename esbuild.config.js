@@ -1,11 +1,9 @@
-import { defineConfig } from 'tsup'
+import { build } from 'esbuild'
 
-export default defineConfig({
-  entry:      ['src/ui/index.js'],
-  format:     ['esm', 'cjs'],
-  splitting:  true,
-  sourcemap:  true,
-  clean:      true,
+const shared = {
+  entryPoints: ['src/ui/index.jsx'],
+  bundle: true,
+  sourcemap: true,
   external: [
     'react',
     'react-dom',
@@ -23,4 +21,10 @@ export default defineConfig({
     'clsx',
     'tailwind-merge',
   ],
-})
+}
+
+await build({ ...shared, format: 'esm',  outfile: 'dist/index.esm.js' })
+await build({ ...shared, format: 'cjs',  outfile: 'dist/index.cjs.js' })
+
+console.log('  ✓ dist/index.esm.js')
+console.log('  ✓ dist/index.cjs.js')

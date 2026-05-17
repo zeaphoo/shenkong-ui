@@ -20,7 +20,7 @@ const outDir    = join(root, 'public', 'r')
 mkdirSync(outDir, { recursive: true })
 
 // ─── File-type mapping (source → shadcn registry) ────────────────────────────
-// 'barrel' (index.ts) entries are intentionally omitted — shadcn CLI resolves
+// 'barrel' (index.js) entries are intentionally omitted — shadcn CLI resolves
 // imports itself and barrel re-exports would duplicate source files.
 
 const FILE_TYPE_MAP = {

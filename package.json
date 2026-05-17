@@ -8,7 +8,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint .",
-    "build:lib": "tsup",
+    "build:lib": "node esbuild.config.js",
     "test": "node --test scripts/build-registry.test.mjs"
   },
   "dependencies": {
@@ -64,6 +64,6 @@
     "eslint-plugin-react-hooks": "^7.0.1",
     "globals": "^16.5.0",
     "sucrase": "^3.35.1",
-    "tsup": "^8.5.1"
+    "esbuild": "^0.27.0"
   }
 }

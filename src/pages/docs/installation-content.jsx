@@ -30,7 +30,7 @@ const manualDeps = `npm install tailwindcss @tailwindcss/vite \\
   @radix-ui/react-tooltip @radix-ui/react-toast @radix-ui/react-progress \\
   @radix-ui/react-separator class-variance-authority clsx tailwind-merge
 npm install -D vite-tsconfig-paths`
-const manualVite = `// vite.config.ts
+const manualVite = `// vite.config.js
 import { defineConfig } from 'vite'
 import react          from '@vitejs/plugin-react'
 import tailwindcss    from '@tailwindcss/vite'
@@ -41,13 +41,13 @@ export default defineConfig({
 const manualTsconfig = `// tsconfig.app.json — inside compilerOptions:
 "baseUrl": ".",
 "paths": { "@/*": ["src/*"] }`
-const manualUtils = `// src/lib/utils.ts
+const manualUtils = `// src/lib/utils.js
 import { clsx, type ClassValue } from 'clsx'
 import { twMerge } from 'tailwind-merge'
 export function cn(...inputs: ClassValue[]): string {
   return twMerge(clsx(inputs))
 }`
-const manualUsage = `// Copy src/ui/button/button.tsx into your project, then:
+const manualUsage = `// Copy src/ui/button.jsx into your project, then:
 import { Button } from '@/ui/button'
 export function MyPage() {
   return <Button variant="EXEC">INITIATE</Button>
@@ -189,7 +189,7 @@ function ManualSection() {
             , React.createElement(CodeBlock, { code: manualUsage, language: "tsx"} )
             , React.createElement('p', { style: { marginTop: '0.75rem', fontSize: '0.8rem', color: 'var(--text-muted)', lineHeight: 1.7 }}, "Each component lives at"
                  , ' '
-              , React.createElement('span', { style: { color: 'var(--color-green)' }}, "src/ui/", '{', "name", '}', "/", '{', "name", '}', ".tsx"), ". Copy it into your project's component directory and import as shown."
+              , React.createElement('span', { style: { color: 'var(--color-green)' }}, "src/ui/", '{', "name", '}', ".jsx"), ". Copy it into your project's component directory and import as shown."
             )
           )
         )

@@ -110,13 +110,13 @@ test('index.json items include every source manifest name', () => {
 
 // ─── 7. No barrel files in generated output ───────────────────────────────────
 
-test('no generated component JSON contains barrel (index.ts) file entries', () => {
+test('no generated component JSON contains barrel (index.js) file entries', () => {
   const entries = loadSourceEntries()
   for (const { data } of entries) {
     const out = JSON.parse(readFileSync(join(outDir, `${data.name}.json`), 'utf8'))
     for (const f of out.files) {
       assert.ok(
-        !f.path.endsWith('index.ts'),
+        !f.path.endsWith('index.js'),
         `${data.name}.json contains barrel file "${f.path}"`
       )
     }

@@ -41,7 +41,7 @@ npx shadcn@latest add @shenkong-ui/dialog @shenkong-ui/toast @shenkong-ui/select
 ```
 
 **5. Use:**
-```tsx
+```jsx
 import { Button } from '@/ui/button'
 
 export function MyPage() {
@@ -83,12 +83,12 @@ npm install @radix-ui/react-slot @radix-ui/react-checkbox @radix-ui/react-select
   @radix-ui/react-tooltip @radix-ui/react-toast @radix-ui/react-progress \
   @radix-ui/react-separator class-variance-authority clsx tailwind-merge
 
-npm install -D vite-tsconfig-paths
+npm install -D vite
 ```
 
 2. Configure Vite path alias (`@/*` → `src/*`) and import `globals.css`.
 
-3. Copy any `src/ui/{name}/{name}.tsx` file into your project.
+3. Copy any `src/ui/{name}/{name}.jsx` file into your project.
 
 See the **Installation** page in the docs for the full step-by-step.
 
@@ -107,7 +107,7 @@ npm run build:registry  # regenerate public/r/*.json only
 
 ## Stack
 
-- React 19 + TypeScript + Vite
+- React 19 + JavaScript + Vite
 - Tailwind CSS v4 (CSS-first config via `@theme {}`)
 - Radix UI primitives (headless)
 - class-variance-authority for variant logic

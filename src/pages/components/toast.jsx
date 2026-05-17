@@ -80,8 +80,7 @@ export default function Page() {
       , React.createElement(Section, { title: "INSTALLATION"}
         , React.createElement(CodeBlock, { code: installCode, language: "bash"} )
         , React.createElement('p', { style: { marginTop: '0.75rem', fontSize: '0.8rem', color: 'var(--text-muted)' }}, "Then copy "
-            , React.createElement('span', { style: { color: 'var(--color-green)' }}, "src/ui/toast/toast.tsx"), " and" , ' '
-          , React.createElement('span', { style: { color: 'var(--color-green)' }}, "src/ui/toast/use-toast.ts"), " into your project."
+            , React.createElement('span', { style: { color: 'var(--color-green)' }}, "src/ui/toast.jsx"), " and" , ' '
         )
       )
 
