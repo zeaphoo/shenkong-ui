@@ -1,0 +1,15 @@
+{
+  "name": "status-grid",
+  "description": "System health board showing service names with live status indicators. Supports 1–3 columns.",
+  "files": [
+    {
+      "path": "src/ui/status-grid.jsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [
+    "utils"
+  ]
+}

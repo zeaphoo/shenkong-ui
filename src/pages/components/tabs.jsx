@@ -1,0 +1,128 @@
+import React from 'react'
+
+
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/ui/tabs'
+import { PageHeader } from '@/components/docs/page-header'
+import { Section } from '@/components/docs/section'
+import { ComponentPreview } from '@/components/docs/component-preview'
+import { CodeBlock } from '@/components/docs/code-block'
+import { PropsTable } from '@/components/docs/props-table'
+
+const metadata = {
+  title: 'TABS',
+  description: 'Tabbed panel built on Radix UI. Underline-style active indicator in primary color. Uppercase monospace trigger labels.',
+  alternates: { canonical: '/components/tabs' },
+}
+
+const previewCode = `import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/ui/tabs'
+
+<Tabs defaultValue="status">
+  <TabsList>
+    <TabsTrigger value="status">STATUS</TabsTrigger>
+    <TabsTrigger value="sensors">SENSORS</TabsTrigger>
+    <TabsTrigger value="comms">COMMS</TabsTrigger>
+  </TabsList>
+  <TabsContent value="status">Status panel content.</TabsContent>
+  <TabsContent value="sensors">Sensor readouts here.</TabsContent>
+  <TabsContent value="comms">Communications log.</TabsContent>
+</Tabs>`
+
+const installCode = `npx shadcn@latest add @shenkong/tabs`
+const usageCode = `import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/ui/tabs'
+
+export function SystemTabs() {
+  return (
+    <Tabs defaultValue="nav">
+      <TabsList>
+        <TabsTrigger value="nav">NAVIGATION</TabsTrigger>
+        <TabsTrigger value="weapons">WEAPONS</TabsTrigger>
+        <TabsTrigger value="shields">SHIELDS</TabsTrigger>
+      </TabsList>
+      <TabsContent value="nav">
+        <p>Navigation subsystem online.</p>
+      </TabsContent>
+      <TabsContent value="weapons">
+        <p>Weapons array charged.</p>
+      </TabsContent>
+      <TabsContent value="shields">
+        <p>Shield matrix nominal.</p>
+      </TabsContent>
+    </Tabs>
+  )
+}`
+
+export default function Page() {
+  return (
+    React.createElement('div', {}
+      , React.createElement(PageHeader, {
+        title: "TABS",
+        description: "Tabbed panel built on Radix UI. Underline-style active indicator in primary color. Uppercase monospace trigger labels."               ,
+        dependencies: ['@radix-ui/react-tabs']}
+      )
+
+      , React.createElement(Section, { title: "PREVIEW"}
+        , React.createElement(ComponentPreview, {
+          code: previewCode,
+          preview: 
+            React.createElement('div', { style: { width: '100%' }}
+              , React.createElement(Tabs, { defaultValue: "status"}
+                , React.createElement(TabsList, {}
+                  , React.createElement(TabsTrigger, { value: "status"}, "STATUS")
+                  , React.createElement(TabsTrigger, { value: "sensors"}, "SENSORS")
+                  , React.createElement(TabsTrigger, { value: "comms"}, "COMMS")
+                )
+                , React.createElement(TabsContent, { value: "status"}
+                  , React.createElement('p', { style: { fontSize: '0.8rem', color: 'var(--text-muted)' }}, "All systems nominal."  )
+                )
+                , React.createElement(TabsContent, { value: "sensors"}
+                  , React.createElement('p', { style: { fontSize: '0.8rem', color: 'var(--text-muted)' }}, "No anomalies detected."  )
+                )
+                , React.createElement(TabsContent, { value: "comms"}
+                  , React.createElement('p', { style: { fontSize: '0.8rem', color: 'var(--text-muted)' }}, "Channel open." )
+                )
+              )
+            )
+          }
+        )
+      )
+
+      , React.createElement(Section, { title: "INSTALLATION"}
+        , React.createElement(CodeBlock, { code: installCode, language: "bash"} )
+      )
+
+      , React.createElement(Section, { title: "USAGE"}
+        , React.createElement(CodeBlock, { code: usageCode} )
+      )
+
+      , React.createElement(Section, { title: "ANATOMY"}
+        , React.createElement('div', { style: { display: 'flex', flexDirection: 'column', gap: '0.4rem' }}
+          , [
+            ['Tabs',         'Root — manages active tab state. Use defaultValue or value + onValueChange.'],
+            ['TabsList',     'Horizontal container with bottom border. Houses all TabsTrigger elements.'],
+            ['TabsTrigger',  'Clickable tab label. Active state: primary color underline + text glow.'],
+            ['TabsContent',  'Panel shown when its value matches the active tab. Adds top margin.'],
+            ['TabsGroup',    'Alias for TabsList — same component, different name.'],
+          ].map(([comp, desc]) => (
+            React.createElement('div', { key: comp, style: { display: 'flex', gap: '1rem', padding: '0.5rem', border: '1px solid var(--border)', background: 'var(--surface)' }}
+              , React.createElement('code', { style: { color: 'var(--color-green)', fontSize: '0.7rem', minWidth: '130px', flexShrink: 0 }}, comp)
+              , React.createElement('span', { style: { fontSize: '0.8rem', color: 'var(--text-muted)', lineHeight: 1.5 }}, desc)
+            )
+          ))
+        )
+      )
+
+      , React.createElement(Section, { title: "PROPS"}
+        , React.createElement(PropsTable, {
+          rows: [
+            { prop: 'defaultValue',  type: 'string',                  defaultValue: '—', description: 'Initial active tab value (uncontrolled).' },
+            { prop: 'value',         type: 'string',                  defaultValue: '—', description: 'Controlled active tab value.' },
+            { prop: 'onValueChange', type: '(value: string) => void', defaultValue: '—', description: 'Callback fired when active tab changes.' },
+          ]}
+        )
+        , React.createElement('p', { style: { marginTop: '1rem', fontSize: '0.75rem', color: 'var(--text-muted)', lineHeight: 1.6 }}, "TabsTrigger requires a "
+             , React.createElement('code', {}, "value"), " prop matching the corresponding TabsContent "      , React.createElement('code', {}, "value"), "."
+        )
+      )
+    )
+  )
+}

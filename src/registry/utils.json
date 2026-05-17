@@ -1,0 +1,16 @@
+{
+  "name": "utils",
+  "description": "The cn() utility combining clsx and tailwind-merge.",
+  "files": [
+    {
+      "path": "src/lib/utils.js",
+      "type": "registry"
+    }
+  ],
+  "dependencies": [
+    "clsx",
+    "tailwind-merge"
+  ],
+  "devDependencies": [],
+  "registryDependencies": []
+}

@@ -1,0 +1,15 @@
+{
+  "name": "skeleton",
+  "description": "Loading placeholder block that animates with a pulsing glow.",
+  "files": [
+    {
+      "path": "src/ui/skeleton.jsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [
+    "utils"
+  ]
+}

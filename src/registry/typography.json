@@ -1,0 +1,17 @@
+{
+  "name": "typography",
+  "description": "Type scale components for headings, body text, and code display.",
+  "files": [
+    {
+      "path": "src/ui/typography.jsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "devDependencies": [],
+  "registryDependencies": [
+    "utils"
+  ]
+}

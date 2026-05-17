@@ -1,0 +1,15 @@
+{
+  "name": "terminal",
+  "description": "Scrollable log/output block with typed line entries, color-coded types, and a blinking cursor.",
+  "files": [
+    {
+      "path": "src/ui/terminal.jsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [
+    "utils"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "line-chart",
+  "description": "SVG line chart with multi-series support, animated draw-on, area fill, grid lines, and legend.",
+  "files": [
+    {
+      "path": "src/ui/line-chart.jsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [
+    "utils"
+  ]
+}

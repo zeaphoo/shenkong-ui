@@ -1,0 +1,15 @@
+{
+  "name": "input",
+  "description": "Text input with label, error state, and optional prefix character.",
+  "files": [
+    {
+      "path": "src/ui/input.jsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [
+    "utils"
+  ]
+}

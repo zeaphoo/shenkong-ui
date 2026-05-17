@@ -1,0 +1,17 @@
+{
+  "name": "alert",
+  "description": "Alert panel with STATUS, WARNING, CRITICAL, and INFO variants.",
+  "files": [
+    {
+      "path": "src/ui/alert.jsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "devDependencies": [],
+  "registryDependencies": [
+    "utils"
+  ]
+}

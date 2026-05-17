@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "toast",
+  "type": "registry:ui",
+  "title": "Toast",
+  "description": "Toast notifications with useToast hook. STATUS, WARNING, CRITICAL, INFO variants.",
+  "dependencies": [
+    "@radix-ui/react-toast"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "ui/toast.jsx",
+      "type": "registry:ui",
+      "content": "'use client'\n\nimport * as React from 'react'\nimport * as ToastPrimitive from '@radix-ui/react-toast'\nimport { cn } from '../lib/utils.js'\n\nconst ToastProvider  = ToastPrimitive.Provider\nconst ToastViewport  = React.forwardRef(({ className, ...props }, ref) => (\n  <ToastPrimitive.Viewport\n    ref={ref}\n    className={cn('fixed bottom-4 right-4 z-[9999] flex flex-col gap-2 w-80', className)}\n    {...props}\n  />\n))\nToastViewport.displayName = ToastPrimitive.Viewport.displayName\n\nconst variantStyles = {\n  STATUS:   { borderColor: 'var(--color-green)',  symbol: '◈', glow: 'var(--glow-green)' },\n  WARNING:  { borderColor: 'var(--color-amber)',  symbol: '⚠', glow: 'var(--glow-amber)' },\n  CRITICAL: { borderColor: 'var(--color-red)',    symbol: '✕', glow: 'var(--glow-red)' },\n  INFO:     { borderColor: 'var(--color-blue)',   symbol: 'ℹ', glow: 'var(--glow-blue)' },\n}\n\nconst Toast = React.forwardRef(({ className, variant = 'STATUS', children, ...props }, ref) => {\n  const vs = variantStyles[variant]\n  return (\n    <ToastPrimitive.Root\n      ref={ref}\n      className={cn(\n        'relative flex items-start gap-3',\n        'border border-l-[3px] rounded-none',\n        'bg-[var(--surface-raised)]',\n        'p-3',\n        'font-mono',\n        'data-[state=open]:animate-in data-[state=open]:slide-in-from-right-full',\n        'data-[state=closed]:animate-out data-[state=closed]:slide-out-to-right-full',\n        className\n      )}\n      style={{\n        borderColor:  'var(--border)',\n        borderLeftColor: vs.borderColor,\n        boxShadow:    vs.glow,\n      }}\n      {...props}\n    >\n      <span\n        style={{\n          color:      vs.borderColor,\n          fontSize:   '0.8rem',\n          lineHeight: 1.5,\n          flexShrink: 0,\n        }}\n      >\n        {vs.symbol}\n      </span>\n      <div style={{ flex: 1, minWidth: 0 }}>{children}</div>\n      <ToastPrimitive.Close\n        style={{\n          background:   'transparent',\n          border:       'none',\n          color:        'var(--text-muted)',\n          cursor:       'pointer',\n          fontSize:     '0.7rem',\n          padding:      '0 2px',\n          lineHeight:   1,\n          fontFamily:   'var(--font-mono)',\n          flexShrink:   0,\n          alignSelf:    'flex-start',\n        }}\n      >\n        ✕\n      </ToastPrimitive.Close>\n    </ToastPrimitive.Root>\n  )\n})\nToast.displayName = ToastPrimitive.Root.displayName\n\nconst ToastTitle = React.forwardRef(({ className, style, ...props }, ref) => (\n  <ToastPrimitive.Title\n    ref={ref}\n    className={cn(className)}\n    style={{\n      fontSize:      '0.75rem',\n      fontWeight:    600,\n      color:         'var(--text-secondary)',\n      letterSpacing: '0.06em',\n      textTransform: 'uppercase',\n      ...style,\n    }}\n    {...props}\n  />\n))\nToastTitle.displayName = ToastPrimitive.Title.displayName\n\nconst ToastDescription = React.forwardRef(({ className, style, ...props }, ref) => (\n  <ToastPrimitive.Description\n    ref={ref}\n    className={cn(className)}\n    style={{\n      fontSize:   '0.75rem',\n      color:      'var(--text-muted)',\n      lineHeight: 1.5,\n      marginTop:  '0.2rem',\n      ...style,\n    }}\n    {...props}\n  />\n))\nToastDescription.displayName = ToastPrimitive.Description.displayName\n\nexport {\n  ToastProvider,\n  ToastViewport,\n  Toast,\n  ToastTitle,\n  ToastDescription,\n}\n"
+    }
+  ]
+}

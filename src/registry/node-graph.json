@@ -1,0 +1,15 @@
+{
+  "name": "node-graph",
+  "description": "SVG node-edge graph with responsive width, directed arrowheads, animated marching-ants edges, and per-node status colors.",
+  "files": [
+    {
+      "path": "src/ui/node-graph.jsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [
+    "utils"
+  ]
+}

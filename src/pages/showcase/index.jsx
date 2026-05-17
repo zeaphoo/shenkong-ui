@@ -1,0 +1,167 @@
+import React from 'react'
+import { Link } from 'react-router-dom'
+
+import { PageHeader } from '@/components/docs/page-header'
+import { Section } from '@/components/docs/section'
+const showcases = [
+  {
+    id: 'charts',
+    title: 'SECTOR ANALYTICS CONSOLE',
+    theme: 'CHARTS',
+    themeColor: '#6DC3BB',
+    description:
+      'Deep space sensor array analytics dashboard. Showcases every chart component — LineChart, BarChart, RadarChart, NodeGraph, Heatmap, and ProgressRing — with live-jittered synthetic sensor data.',
+    components: ['LineChart', 'BarChart', 'RadarChart', 'NodeGraph', 'Heatmap', 'ProgressRing', 'StatCard', 'Panel', 'Tabs', 'Badge'],
+    path: '/showcase/charts',
+  },
+  {
+    id: 'mission-control',
+    title: 'EARTH ORBIT COMMAND',
+    theme: 'LIVE DATA',
+    themeColor: '#6DC3BB',
+    description:
+      'Real-time space mission control dashboard. ISS position updates live every 5 seconds. SpaceX launch history, upcoming missions, and crew manifest pulled from open APIs.',
+    components: ['Panel', 'Badge', 'StatCard', 'Terminal', 'StatusGrid', 'ProgressRing', 'BarChart', 'Tabs', 'Alert'],
+    path: '/showcase/mission-control',
+  },
+  {
+    id: 'sci-fi',
+    title: 'NEXUS STATION-7 OPS CONTROL',
+    theme: 'STATION OPS',
+    themeColor: '#6DC3BB',
+    description:
+      'Deep space station operations terminal. Manage vessel docking, monitor station modules, track crew, and respond to incoming transmissions.',
+    components: ['Panel', 'Badge', 'Button', 'Alert', 'Progress', 'Tabs', 'StatCard', 'Terminal', 'StatusGrid', 'ProgressRing', 'Grid'],
+    path: '/showcase/sci-fi',
+  },
+]
+export default function ShowcaseIndexContent() {
+  return (
+    React.createElement('div', {}
+      , React.createElement(PageHeader, {
+        title: "SHOWCASE",
+        description: "Full-page examples built with shenkong/ui components. Each showcase demonstrates real-world interface patterns using the design system."               }
+      )
+      , React.createElement(Section, { title: "EXAMPLES"}
+        , React.createElement('div', { style: { display: 'flex', flexDirection: 'column', gap: '1rem' }}
+          , showcases.map((s) => (
+            React.createElement(Link, { key: s.id, to: s.path, style: { textDecoration: 'none' }}
+              , React.createElement('div', {
+                style: {
+                  border: '1px solid var(--border)',
+                  background: 'var(--surface)',
+                  padding: '1.25rem 1.5rem',
+                  display: 'flex',
+                  gap: '1.5rem',
+                  alignItems: 'flex-start',
+                  transition: 'border-color 0.15s',
+                  cursor: 'pointer',
+                },
+                onMouseEnter: (e) => {
+                  e.currentTarget.style.borderColor = s.themeColor
+                },
+                onMouseLeave: (e) => {
+                  e.currentTarget.style.borderColor = 'var(--border)'
+                }}
+                /* Theme swatch */
+                , React.createElement('div', {
+                  style: {
+                    width: '3.5rem',
+                    height: '3.5rem',
+                    border: `1px solid ${s.themeColor}`,
+                    background: `${s.themeColor}18`,
+                    flexShrink: 0,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: s.themeColor,
+                    fontSize: '0.55rem',
+                    letterSpacing: '0.1em',
+                    textAlign: 'center',
+                    fontFamily: 'var(--font-mono)',
+                    lineHeight: 1.4,
+                    whiteSpace: 'pre-line',
+                    textShadow: `0 0 8px ${s.themeColor}88`,
+                  }}
+                  , s.theme
+                )
+                /* Info */
+                , React.createElement('div', { style: { flex: 1 }}
+                  , React.createElement('div', {
+                    style: {
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '0.75rem',
+                      marginBottom: '0.5rem',
+                    }}
+                    , React.createElement('span', {
+                      style: {
+                        fontSize: '0.9rem',
+                        fontWeight: 700,
+                        color: 'var(--text-secondary)',
+                        letterSpacing: '0.06em',
+                        fontFamily: 'var(--font-mono)',
+                      }}
+                      , s.title
+                    )
+                    , React.createElement('span', {
+                      style: {
+                        fontSize: '0.6rem',
+                        color: s.themeColor,
+                        border: `1px solid ${s.themeColor}`,
+                        padding: '1px 6px',
+                        letterSpacing: '0.1em',
+                        fontFamily: 'var(--font-mono)',
+                        textShadow: `0 0 6px ${s.themeColor}88`,
+                      }}
+                      , s.theme
+                    )
+                  )
+                  , React.createElement('p', {
+                    style: {
+                      fontSize: '0.8rem',
+                      color: 'var(--text-muted)',
+                      lineHeight: 1.6,
+                      margin: 0,
+                      marginBottom: '0.85rem',
+                    }}
+                    , s.description
+                  )
+                  , React.createElement('div', { style: { display: 'flex', gap: '0.4rem', flexWrap: 'wrap' }}
+                    , s.components.map((c) => (
+                      React.createElement('span', {
+                        key: c,
+                        style: {
+                          fontSize: '0.6rem',
+                          color: 'var(--text-muted)',
+                          border: '1px solid var(--border)',
+                          padding: '1px 6px',
+                          letterSpacing: '0.08em',
+                          fontFamily: 'var(--font-mono)',
+                        }}
+                        , c
+                      )
+                    ))
+                  )
+                )
+                /* CTA */
+                , React.createElement('div', {
+                  style: {
+                    color: s.themeColor,
+                    fontSize: '0.75rem',
+                    fontFamily: 'var(--font-mono)',
+                    letterSpacing: '0.06em',
+                    flexShrink: 0,
+                    alignSelf: 'center',
+                    textShadow: `0 0 6px ${s.themeColor}88`,
+                  }}
+, "VIEW →"
+                )
+              )
+            )
+          ))
+        )
+      )
+    )
+  )
+}

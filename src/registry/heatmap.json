@@ -1,0 +1,15 @@
+{
+  "name": "heatmap",
+  "description": "Grid of colored cells showing density or activity. Opacity-based intensity scaling. Supports row/column labels.",
+  "files": [
+    {
+      "path": "src/ui/heatmap.jsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [
+    "utils"
+  ]
+}

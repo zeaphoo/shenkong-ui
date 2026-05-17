@@ -1,0 +1,17 @@
+{
+  "name": "tabs",
+  "description": "Tab panels with teal active border glow.",
+  "files": [
+    {
+      "path": "src/ui/tabs.jsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [
+    "@radix-ui/react-tabs"
+  ],
+  "devDependencies": [],
+  "registryDependencies": [
+    "utils"
+  ]
+}

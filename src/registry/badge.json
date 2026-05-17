@@ -1,0 +1,17 @@
+{
+  "name": "badge",
+  "description": "Status indicator with ACTIVE, OFFLINE, WARNING, CRITICAL, and SCANNING variants.",
+  "files": [
+    {
+      "path": "src/ui/badge.jsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "devDependencies": [],
+  "registryDependencies": [
+    "utils"
+  ]
+}

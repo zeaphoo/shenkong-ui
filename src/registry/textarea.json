@@ -1,0 +1,15 @@
+{
+  "name": "textarea",
+  "description": "Multi-line text input with label and error state.",
+  "files": [
+    {
+      "path": "src/ui/textarea.jsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [
+    "utils"
+  ]
+}

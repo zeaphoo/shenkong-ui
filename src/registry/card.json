@@ -1,0 +1,15 @@
+{
+  "name": "card",
+  "description": "Surface container with header, content, and footer sections.",
+  "files": [
+    {
+      "path": "src/ui/card.jsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [
+    "utils"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "select",
+  "description": "Accessible dropdown select with terminal styling.",
+  "files": [
+    {
+      "path": "src/ui/select.jsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [
+    "@radix-ui/react-select"
+  ],
+  "devDependencies": [],
+  "registryDependencies": [
+    "utils"
+  ]
+}

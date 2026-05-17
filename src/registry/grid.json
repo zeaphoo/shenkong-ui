@@ -1,0 +1,15 @@
+{
+  "name": "grid",
+  "description": "Responsive dashboard layout wrapper with pre-baked column presets and custom column support.",
+  "files": [
+    {
+      "path": "src/ui/grid.jsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [
+    "utils"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "stat-card",
+  "description": "Metric tile with value, label, delta indicator, and status variants for dashboards.",
+  "files": [
+    {
+      "path": "src/ui/stat-card.jsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "devDependencies": [],
+  "registryDependencies": [
+    "utils"
+  ]
+}

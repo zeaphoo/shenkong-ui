@@ -1,0 +1,15 @@
+{
+  "name": "panel",
+  "description": "Composable Panel, PanelHeader, PanelTitle, PanelContent, PanelFooter.",
+  "files": [
+    {
+      "path": "src/ui/panel.jsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [
+    "utils"
+  ]
+}

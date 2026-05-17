@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "grid",
+  "type": "registry:ui",
+  "title": "Grid",
+  "description": "Responsive dashboard layout wrapper with pre-baked column presets and custom column support.",
+  "dependencies": [],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "ui/grid.jsx",
+      "type": "registry:ui",
+      "content": "import * as React from 'react'\nimport { cn } from '../lib/utils.js'\n\nconst PRESET_CLASSES = {\n  '2-col':        'grid-cols-1 sm:grid-cols-2',\n  '3-col':        'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3',\n  '4-col':        'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4',\n  'sidebar-main': 'grid-cols-1 md:grid-cols-[240px_1fr]',\n  'main-sidebar': 'grid-cols-1 md:grid-cols-[1fr_240px]',\n}\n\nconst Grid = React.forwardRef(\n  (\n    {\n      className,\n      preset  = '2-col',\n      columns,\n      gap     = '1rem',\n      rows,\n      style,\n      ...props\n    },\n    ref\n  ) => {\n    return (\n      <div\n        ref={ref}\n        className={cn(\n          'grid',\n          !columns && PRESET_CLASSES[preset],\n          className\n        )}\n        style={{\n          ...(columns ? { gridTemplateColumns: columns } : {}),\n          gridTemplateRows: rows,\n          gap: typeof gap === 'number' ? `${gap}px` : gap,\n          ...style,\n        }}\n        {...props}\n      />\n    )\n  }\n)\nGrid.displayName = 'Grid'\n\nexport { Grid }\n"
+    }
+  ]
+}

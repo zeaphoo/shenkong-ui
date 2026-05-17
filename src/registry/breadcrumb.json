@@ -1,0 +1,15 @@
+{
+  "name": "breadcrumb",
+  "description": "Navigation breadcrumb trail showing current location hierarchy.",
+  "files": [
+    {
+      "path": "src/ui/breadcrumb.jsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [
+    "utils"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "toast",
+  "description": "Toast notifications with useToast hook. STATUS, WARNING, CRITICAL, INFO variants.",
+  "files": [
+    {
+      "path": "src/ui/toast.jsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [
+    "@radix-ui/react-toast"
+  ],
+  "devDependencies": [],
+  "registryDependencies": [
+    "utils"
+  ]
+}

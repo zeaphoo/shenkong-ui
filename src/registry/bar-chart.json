@@ -1,0 +1,15 @@
+{
+  "name": "bar-chart",
+  "description": "CSS-only bar chart with horizontal and vertical orientations. No charting library dependency.",
+  "files": [
+    {
+      "path": "src/ui/bar-chart.jsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [
+    "utils"
+  ]
+}

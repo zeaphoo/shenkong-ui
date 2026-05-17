@@ -1,0 +1,15 @@
+{
+  "name": "spinner",
+  "description": "ASCII-style rotating spinner with optional label.",
+  "files": [
+    {
+      "path": "src/ui/spinner.jsx",
+      "type": "component"
+    }
+  ],
+  "dependencies": [],
+  "devDependencies": [],
+  "registryDependencies": [
+    "utils"
+  ]
+}

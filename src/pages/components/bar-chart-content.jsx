@@ -1,0 +1,117 @@
+import React from 'react'
+
+import { BarChart } from '@/ui/bar-chart'
+import { PageHeader } from '@/components/docs/page-header'
+import { Section } from '@/components/docs/section'
+import { ComponentPreview } from '@/components/docs/component-preview'
+import { CodeBlock } from '@/components/docs/code-block'
+import { PropsTable } from '@/components/docs/props-table'
+import { useNarrow } from '@/lib/use-narrow'
+const horizontalData = [
+  { label: 'REACTOR',  value: 87 },
+  { label: 'SHIELDS',  value: 61 },
+  { label: 'ENGINES',  value: 94 },
+  { label: 'COMMS',    value: 32 },
+  { label: 'SENSORS',  value: 78 },
+]
+const verticalData = [
+  { label: 'MON', value: 45 },
+  { label: 'TUE', value: 78 },
+  { label: 'WED', value: 92 },
+  { label: 'THU', value: 61 },
+  { label: 'FRI', value: 83 },
+  { label: 'SAT', value: 38 },
+  { label: 'SUN', value: 57 },
+]
+const previewCode = `import { BarChart } from '@/ui/bar-chart'
+const systems = [
+  { label: 'REACTOR', value: 87 },
+  { label: 'SHIELDS', value: 61 },
+  { label: 'ENGINES', value: 94 },
+  { label: 'COMMS',   value: 32 },
+]
+<BarChart data={systems} title="SYSTEM LOAD" orientation="horizontal" />`
+const installCode = `npx shadcn@latest add @shenkong/bar-chart`
+const usageCode = `import { BarChart, type BarChartEntry } from '@/ui/bar-chart'
+const data: BarChartEntry[] = [
+  { label: 'ALPHA',   value: 87 },
+  { label: 'BETA',    value: 45 },
+  { label: 'GAMMA',   value: 72 },
+]
+// Horizontal (default)
+<BarChart data={data} title="SIGNAL STRENGTH" variant="ACTIVE" />
+// Vertical
+<BarChart data={data} title="DAILY ACTIVITY" orientation="vertical" variant="WARNING" />`
+export function BarChartContent() {
+  const narrow = useNarrow()
+  return (
+    React.createElement('div', {}
+      , React.createElement(PageHeader, {
+        title: "BAR CHART" ,
+        description: "CSS-only bar chart. No charting library dependency. Supports horizontal and vertical orientations with four color variants."               }
+      )
+      , React.createElement(Section, { title: "PREVIEW"}
+        , React.createElement(ComponentPreview, {
+          code: previewCode,
+          preview: 
+            React.createElement(BarChart, {
+              data: horizontalData,
+              title: "SYSTEM LOAD" ,
+              orientation: "horizontal",
+              style: { width: '100%' }}
+            )
+          }
+        )
+      )
+      , React.createElement(Section, { title: "INSTALLATION"}
+        , React.createElement(CodeBlock, { code: installCode, language: "bash"} )
+      )
+      , React.createElement(Section, { title: "USAGE"}
+        , React.createElement(CodeBlock, { code: usageCode} )
+      )
+      , React.createElement(Section, { title: "ORIENTATIONS"}
+        , React.createElement('div', { style: { display: 'grid', gridTemplateColumns: narrow ? '1fr' : '1fr 1fr', gap: '1.5rem' }}
+          , React.createElement('div', {}
+            , React.createElement('p', { style: { marginBottom: '0.5rem', fontSize: '0.65rem', color: 'var(--text-muted)', letterSpacing: '0.1em' }}, "orientation=\"horizontal\""
+            )
+            , React.createElement(BarChart, { data: horizontalData, title: "SYSTEM LOAD" , orientation: "horizontal", style: { width: '100%' }} )
+          )
+          , React.createElement('div', {}
+            , React.createElement('p', { style: { marginBottom: '0.5rem', fontSize: '0.65rem', color: 'var(--text-muted)', letterSpacing: '0.1em' }}, "orientation=\"vertical\""
+            )
+            , React.createElement(BarChart, { data: verticalData, title: "WEEKLY UPTIME" , orientation: "vertical", style: { width: '100%' }} )
+          )
+        )
+      )
+      , React.createElement(Section, { title: "VARIANTS"}
+        , React.createElement('div', { style: { display: 'flex', flexDirection: 'column', gap: '1rem' }}
+          , (['ACTIVE', 'WARNING', 'CRITICAL', 'DEFAULT'] ).map((v) => (
+            React.createElement('div', { key: v}
+              , React.createElement('p', { style: { marginBottom: '0.35rem', fontSize: '0.6rem', color: 'var(--text-muted)', letterSpacing: '0.1em' }}, "variant=\""
+                , v, "\""
+              )
+              , React.createElement(BarChart, {
+                data: horizontalData.slice(0, 3),
+                variant: v,
+                style: { width: '100%' }}
+              )
+            )
+          ))
+        )
+      )
+      , React.createElement(Section, { title: "PROPS"}
+        , React.createElement(PropsTable, {
+          rows: [
+            { prop: 'data',        type: 'BarChartEntry[]',                       defaultValue: '—',            description: 'Array of { label, value } entries.' },
+            { prop: 'orientation', type: '"horizontal" | "vertical"',             defaultValue: '"horizontal"', description: 'Bar direction.' },
+            { prop: 'variant',     type: 'DEFAULT | ACTIVE | WARNING | CRITICAL', defaultValue: 'ACTIVE',       description: 'Controls bar color and glow.' },
+            { prop: 'title',       type: 'string',                                defaultValue: 'undefined',    description: 'Optional header label.' },
+            { prop: 'showValues',  type: 'boolean',                               defaultValue: 'true',         description: 'Show value labels beside/above each bar.' },
+            { prop: 'max',         type: 'number',                                defaultValue: 'max(data)',    description: 'Override the scale maximum.' },
+            { prop: 'className',   type: 'string',                                defaultValue: '—',            description: 'Additional classes merged via cn().' },
+          ]}
+        )
+      )
+    )
+  )
+}
