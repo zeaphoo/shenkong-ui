@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import '@/styles/globals.css'
 import App from './App.jsx'
+import { ThemeProvider } from './lib/use-theme'
 
 // Pages with DocsShell layout
 import Home from './pages/home-content.jsx'
@@ -52,8 +53,9 @@ import TypographyPage from './pages/components/typography.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter>
-      <Routes>
+    <ThemeProvider>
+      <BrowserRouter>
+        <Routes>
         {/* Fullscreen routes (no sidebar/topbar) */}
         <Route path="showcase/sci-fi" element={<SciFiFullscreen />} />
         <Route path="showcase/charts" element={<ChartsFullscreen />} />
@@ -101,5 +103,6 @@ createRoot(document.getElementById('root')).render(
         </Route>
       </Routes>
     </BrowserRouter>
+    </ThemeProvider>
   </StrictMode>,
 )

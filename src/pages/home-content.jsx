@@ -95,7 +95,7 @@ export default function HomeContent() {
           </Button>
         </div>
       </section>
-      /* Component preview strip */}
+      }
       {<section>
         <div
           style={{
@@ -158,7 +158,7 @@ export default function HomeContent() {
           </div>
         </Panel>
       </section>
-      /* Features grid */}
+      }
       {<section>
         <div
           style={{
@@ -216,7 +216,7 @@ export default function HomeContent() {
                 ))}
         </div>
       </section>
-      /* Quick start */}
+      }
       {<section>
         <div
           style={{
@@ -247,7 +247,7 @@ export default function HomeContent() {
           </PanelContent>
         </Panel>
       </section>
-      /* Component list */}
+      }
       <section>
         <div
           style={{
@@ -288,6 +288,6 @@ export default function HomeContent() {
         </div>
       </section>
     </div>
-    /* Hero */
+    
   );
 }

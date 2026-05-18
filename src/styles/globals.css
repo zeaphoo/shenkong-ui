@@ -81,6 +81,48 @@
 }
 
 /* ============================================================
+   LIGHT THEME — overrides when .light class is applied
+   ============================================================ */
+.light {
+  /* Backgrounds */
+  --background:     #f5f5f0;
+  --surface:        #ffffff;
+  --surface-raised: #f0f0eb;
+
+  /* Borders */
+  --border:        rgba(56, 27, 87, 0.15);
+  --border-active: #381B57;
+
+  /* Text */
+  --text-primary:   #381B57;
+  --text-secondary: #1a1a2e;
+  --text-muted:     #6b6b80;
+  --text-warning:   #b87a2e;
+  --text-danger:    #c43b40;
+
+  /* Accent shortcuts */
+  --accent-primary:   #381B57;
+  --accent-secondary: #2a7ab5;
+  --accent-warning:   #b87a2e;
+
+  /* Glow — light */
+  --glow-green:  0 0 4px rgba(100, 240, 200, 0.2);
+  --glow-amber:  0 0 4px rgba(255, 184, 76, 0.2);
+  --glow-red:    0 0 4px rgba(255, 95, 99, 0.2);
+  --glow-blue:   0 0 4px rgba(68, 204, 255, 0.2);
+
+  /* Text glow — light (subtle shadows) */
+  --text-glow-green:  0 0 4px rgba(100, 240, 200, 0.25);
+  --text-glow-amber:  0 0 4px rgba(255, 184, 76, 0.25);
+  --text-glow-red:    0 0 4px rgba(255, 95, 99, 0.25);
+  --text-glow-blue:   0 0 4px rgba(68, 204, 255, 0.25);
+
+  /* Scrollbar */
+  --scrollbar-track: #f0f0eb;
+  --scrollbar-thumb: rgba(56, 27, 87, 0.2);
+}
+
+/* ============================================================
    KEYFRAME ANIMATIONS
    ============================================================ */
 @keyframes flicker {
@@ -186,10 +228,10 @@ p {
   height: 5px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--background);
+  background: var(--scrollbar-track, var(--background));
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--border);
+  background: var(--scrollbar-thumb, var(--border));
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--border-active);
@@ -198,8 +240,8 @@ p {
 
 /* Text selection */
 ::selection {
-  background: #64f0c8;
-  color: #020408;
+  background: var(--accent-primary);
+  color: var(--background);
 }
 
 /* ============================================================

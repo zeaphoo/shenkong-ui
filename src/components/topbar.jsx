@@ -1,6 +1,9 @@
 import React from "react";
+import { useTheme } from "@/lib/use-theme";
 
 export function Topbar({ onMenuToggle, isNarrow }) {
+  const { theme, toggleTheme } = useTheme();
+
   return (
     <header
       style={{
@@ -33,9 +36,9 @@ export function Topbar({ onMenuToggle, isNarrow }) {
             aria-label="Toggle menu">
             ☰
           </button>
-        )
+        )}
 
-      /* Left status (desktop only) */}
+      {/* Left status (desktop only) */}
       {!isNarrow && (
           <React.Fragment>
             <span
@@ -58,12 +61,32 @@ export function Topbar({ onMenuToggle, isNarrow }) {
               ● ACTIVE
             </span>
           </React.Fragment>
-        )
+        )}
 
-      /* Spacer */}
-      {<div style={{ flex: 1 }} />
+      {/* Spacer */}
+      <div style={{ flex: 1 }} />
 
-      /* Version (desktop only) */}
+      {/* Theme toggle */}
+      <button
+        onClick={toggleTheme}
+        style={{
+          background: "transparent",
+          border: "1px solid var(--border)",
+          color: "var(--text-muted)",
+          cursor: "pointer",
+          fontSize: "0.75rem",
+          fontFamily: "var(--font-mono)",
+          padding: "0.2rem 0.6rem",
+          lineHeight: 1,
+          flexShrink: 0,
+          letterSpacing: "0.06em",
+          transition: "all 0.15s",
+        }}
+        aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}>
+        {theme === 'dark' ? 'LIGHT' : 'DARK'}
+      </button>
+
+      {/* Version (desktop only) */}
       {!isNarrow && (
           <span
             style={{
@@ -76,7 +99,5 @@ export function Topbar({ onMenuToggle, isNarrow }) {
           </span>
         )}
     </header>
-
-    /* Hamburger (mobile only) */
   );
 }
