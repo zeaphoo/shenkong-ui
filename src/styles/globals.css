@@ -60,16 +60,16 @@
   --accent-warning:   #ffb84c;
 
   /* Glow — default */
-  --glow-green:  0 0 6px rgba(100,240,200,0.35);
-  --glow-amber:  0 0 6px rgba(255,184,76,0.35);
-  --glow-red:    0 0 6px rgba(255,95,99,0.35);
-  --glow-blue:   0 0 6px rgba(68,204,255,0.35);
+  --glow-green:  0 0 4px rgba(100,240,200,0.20);
+  --glow-amber:  0 0 4px rgba(255,184,76,0.20);
+  --glow-red:    0 0 4px rgba(255,95,99,0.20);
+  --glow-blue:   0 0 4px rgba(68,204,255,0.20);
 
   /* Text glow — default */
-  --text-glow-green:  0 0 6px rgba(100,240,200,0.40);
-  --text-glow-amber:  0 0 6px rgba(255,184,76,0.40);
-  --text-glow-red:    0 0 6px rgba(255,95,99,0.40);
-  --text-glow-blue:   0 0 6px rgba(68,204,255,0.40);
+  --text-glow-green:  0 0 4px rgba(100,240,200,0.25);
+  --text-glow-amber:  0 0 4px rgba(255,184,76,0.25);
+  --text-glow-red:    0 0 4px rgba(255,95,99,0.25);
+  --text-glow-blue:   0 0 4px rgba(68,204,255,0.25);
 
   /* Corner notch clip-paths */
   --clip-corner-sm: polygon(6px 0%, 100% 0%, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0% 100%, 0% 6px);
@@ -84,42 +84,49 @@
    LIGHT THEME — overrides when .light class is applied
    ============================================================ */
 .light {
+  /* Override palette — softer green for light background */
+  --color-green:      #1685a9;
+  --color-amber:      #a07830;
+  --color-amber-light:#b8893a;
+  --color-red:        #b04040;
+  --color-blue:       #3a8ab5;
+
   /* Backgrounds */
-  --background:     #f5f5f0;
-  --surface:        #ffffff;
-  --surface-raised: #f0f0eb;
+  --background:     #f0f0eb;
+  --surface:        #f7f7f2;
+  --surface-raised: #eaeae5;
 
   /* Borders */
-  --border:        rgba(56, 27, 87, 0.15);
-  --border-active: #381B57;
+  --border:        rgba(0, 0, 0, 0.10);
+  --border-active: var(--color-green);
 
   /* Text */
-  --text-primary:   #381B57;
-  --text-secondary: #1a1a2e;
-  --text-muted:     #6b6b80;
-  --text-warning:   #b87a2e;
-  --text-danger:    #c43b40;
+  --text-primary:   var(--color-green);
+  --text-secondary: #333330;
+  --text-muted:     #888880;
+  --text-warning:   var(--color-amber);
+  --text-danger:    var(--color-red);
 
   /* Accent shortcuts */
-  --accent-primary:   #381B57;
-  --accent-secondary: #2a7ab5;
-  --accent-warning:   #b87a2e;
+  --accent-primary:   var(--color-green);
+  --accent-secondary: var(--color-blue);
+  --accent-warning:   var(--color-amber);
 
-  /* Glow — light */
-  --glow-green:  0 0 4px rgba(100, 240, 200, 0.2);
-  --glow-amber:  0 0 4px rgba(255, 184, 76, 0.2);
-  --glow-red:    0 0 4px rgba(255, 95, 99, 0.2);
-  --glow-blue:   0 0 4px rgba(68, 204, 255, 0.2);
+  /* Glow — light (very subtle) */
+  --glow-green:  0 0 2px rgba(99, 187, 208, 0.08);
+  --glow-amber:  0 0 2px rgba(160, 120, 48, 0.08);
+  --glow-red:    0 0 2px rgba(176, 64, 64, 0.08);
+  --glow-blue:   0 0 2px rgba(58, 138, 181, 0.08);
 
-  /* Text glow — light (subtle shadows) */
-  --text-glow-green:  0 0 4px rgba(100, 240, 200, 0.25);
-  --text-glow-amber:  0 0 4px rgba(255, 184, 76, 0.25);
-  --text-glow-red:    0 0 4px rgba(255, 95, 99, 0.25);
-  --text-glow-blue:   0 0 4px rgba(68, 204, 255, 0.25);
+  /* Text glow — light (almost none) */
+  --text-glow-green:  0 0 2px rgba(99, 187, 208, 0.08);
+  --text-glow-amber:  0 0 2px rgba(160, 120, 48, 0.08);
+  --text-glow-red:    0 0 2px rgba(176, 64, 64, 0.08);
+  --text-glow-blue:   0 0 2px rgba(58, 138, 181, 0.08);
 
   /* Scrollbar */
-  --scrollbar-track: #f0f0eb;
-  --scrollbar-thumb: rgba(56, 27, 87, 0.2);
+  --scrollbar-track: #eaeae5;
+  --scrollbar-thumb: rgba(0, 0, 0, 0.15);
 }
 
 /* ============================================================
@@ -293,4 +300,3 @@ p {
 .clip-corner-lg {
   clip-path: var(--clip-corner-lg);
 }
-
